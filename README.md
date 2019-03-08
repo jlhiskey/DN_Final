@@ -10,29 +10,26 @@ https://####.azurewebsites.net/
 
 ## User Stories
 
-### User Story 1 - As a user I would like to land on an informative landing page.
+### User Story 1 - Landing Page.
 
 #### Features
 
-* There will be a home page with a description of the application and some helpful hints about how to use it.
+* As a user I would like an informative landing page with register and login options
 
-* I would like a navigation menu with register and login in links.
- 
+* The user will be informed about the purpose and usage of the site.  Register and Login buttons will redirect to separate pages.  
 #### Acceptance Criteria
 
 * Ensure that user always is directed to the landing page upon opening of the application.
 
-* Ensure there is a navigation menu with links.
+* Ensure there are register and login options 
 
-### User Story 2 - As a user I would like a user dashboard
+### User Story 2 - User Dashboard
 
 #### Features 
 
-* The dashboard will contain a list of user tasks links that will link to task details page.
+* As a user, I would like to have access to a dashboard that allows me to view my tasks.
 
-* The dashboard will contain a link to manage tasks.
-
-* The dashboard will contain link to logout 
+* The dashboard will contain a list of user tasks links that will link to task details page as well as link to manage tasks.
 
 #### Acceptance Criteria
 
@@ -42,52 +39,55 @@ https://####.azurewebsites.net/
 
 * User will have a link to manage tasks.
 
-### User Story 3 As a user I would like the ability to manage my tasks
+
+### User Story 3 - Task Manager
 
 #### Features
 
-* Upon selecting the manage link user will be directed to a manage page.
+* As a user, I would like the ability to manage my tasks
 
-* The user will have the ability to delete a task.
-
-* The user will have the ability to create a new task.
+* Upon selecting the manage link user will be directed to a task management page.  The user will have the ability to add new tasks and delete existing tasks.
 
 #### Acceptance Criteria
 
-* The link to manage page will direct user to manage page.
-
 * The delete option will delete the instance of the task.
 
-* The create options will create a new instance of a task.
+* There will be a drop down menu containing maintenance task options.
 
-### User Story 4 - As a user I would like to see my maintenance history and ability to mark task complete
+* Add task will create a new instance of a task.
+
+
+### User Story 4 - Task Completion Page
 
 #### Features 
 
-* We will create a way to provide the user with a history of the last five of the completed task.  
+* As a user I would like to see my maintenance task history and have the ability to mark a task as completed.
 
-* We will also create a submit button to update task history and to update universal data.
+* The user will be able to view a history of the last five of the completions of a specific task.  The user can also click the "complete" button to update task history and update universal data.
 
 
 #### Acceptance
 
 * Display the last five completed task to user.
 
-* Have a button on the task panel to allow users to complete the selected task.
+* "Complete" button allow users to submit data and update history.
 
-### User Story 5 As a user I would like to have Reminder/Recommendation for task
+
+### User Story 5 - Task Reminders/Recommendations
 
 #### Features
 
-* We want to generate email reminders based on set intervals that are sent to the users. 
+* As a user I would like to receive email reminders and recommendation to complete a task.
 
-* We would also like to generate in-app recommendations for task intervals based on averages/seed data. 
+* Email reminders will be generated based on set intervals and sent to the users. 
+
+* Recommendations will be given for task intervals based on averages/seed data. 
 
 #### Acceptance Criteria
 
 * Receive an email from our service notifying user that their scheduled task is due.
 
-* Provide the user with a suggested interval to complete the selected task. 
+* Provide the user with a suggested interval to complete the selected task.  
 
 
 
