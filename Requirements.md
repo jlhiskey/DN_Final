@@ -10,24 +10,29 @@ This product introduces machine learning and allows users to contribute to a net
 
 This project WILL...
 
+    Allow a user to sign in and create a profile
+    Allow a user to select the task they would like track
     Allow a user to record when they conduct a specific task
     Allow a user to view their past maintenance/task 
-    
-    ...
+    Provide user with recommended data based on complied data.
+    App will predict the future
+
 
 This project WILL NOT...
 
-    ...
+    Will not allow users to create new items to track
+    Will not allow users to 
 
 
 # GOALS
 ## MVP 
-    1. 
-    2. 
-    3. 
+    1. Create a profile
+    2. Tacking a single object
+    3. Login and registration
+    4. 
 
 ## Stretch Goals
-    1. 
+    1. Amazon dash button
     2.
     3.
 
