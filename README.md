@@ -106,9 +106,10 @@ There will be two databases for this project.  The first is the standard ASP.NET
 
 
 ## Credit
+  Deziree Teague 
   Jason Few   
   Jason Hiskey https://github.com/jlhiskey  
   Ray Johnson 
-  Deziree Teague 
+  
 
 
