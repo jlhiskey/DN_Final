@@ -60,15 +60,34 @@ https://####.azurewebsites.net/
 
 * The create options will create a new instance of a task.
 
-### User Story 4
+### User Story 4 - As a user I would like to see my maintenance history and ability to mark task complete
 
 #### Features 
 
+* We will create a way to provide the user with a history of the last five of the completed task.  
+
+* We will also create a submit button to update task history and to update universal data.
+
+
 #### Acceptance
 
-### User Story 5
+* Display the last five completed task to user.
+
+* Have a button on the task panel to allow users to complete the selected task.
+
+### User Story 5 As a user I would like to have Reminder/Recommendation for task
 
 #### Features
+
+* We want to generate email reminders based on set intervals that are sent to the users. 
+
+* We would also like to generate in-app recommendations for task intervals based on averages/seed data. 
+
+#### Acceptance Criteria
+
+* Receive an email from our service notifying user that their scheduled task is due.
+
+* Provide the user with a suggested interval to complete the selected task. 
 
 #### Acceptance Criteria
 * Each model class has an associated table.
@@ -87,4 +106,5 @@ https://####.azurewebsites.net/
   Jason Hiskey https://github.com/jlhiskey  
   Ray Johnson 
   Deziree Teague 
+
 
