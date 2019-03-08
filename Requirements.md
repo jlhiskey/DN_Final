@@ -28,7 +28,8 @@ This project WILL NOT...
 1. Login and registration
 2. Tracking of a single object
 3. Manage tasks
-4. Email Reminders/Recommendations
+4. Email Reminders
+5. Machine Learning Based Recommendations
 
 ## Stretch Goals
 
