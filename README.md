@@ -92,8 +92,35 @@ https://####.azurewebsites.net/
 
 
 ## Database Schema
+- There will be two databases for this project.  
+  - The first is the standard ASP.NET Core Identity database 
+    - Database Name: IdentityContextDB 
+    - Table: User
+      - UserID/Email string (Primary Key)
+      - First string
+      - Last string
+      - Zipcode int
+  - The second database will be the main application database.
+    - Database Name: MaintainContextDB
+    - Table: UserMaintainenceTask
+      - UserID string (Composite Key)
+      - MaintainenceTaskID int (Composite Key)
+      - LastComplete int
+      - Navagation Properties
+        - MaintainenceTask
+        - User
+        - ICollection<MaintenanceTaskData>
+    - Table: MaintainenceTask
+      - ID int (Primary Key)
+      - Name string
+      - RecommendedInterval int
+      - Navagation Properties
+        - ICollection<MaintenanceTaskData>
+    - Table: MaintainenceTaskData
+      - MaintainenceTaskID int (Foreign Key)
+      - UserMaintenanceTaskID int 
+      - ActualInterval int
 
-There will be two databases for this project.  The first is the standard ASP.NET Core Identity database. The second will consist of of three tables, table one is the MaintenanceTaks table (Colulms: ID, Name, RecommendedInterval and MaintenanceDataID).  Table two the UserMaintenanceTask (Colulms: ID, FK UserID, FK MaintenanceTaksID, and ActualInterval).  The third table is the MaintenanceTaskData table (Colulms: ID, FK MaintenanceTaksID, FK UserMaintenanceTaskID and ActualInterval)
 ![Db Schema](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2FMaintainNETDBSchema.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 
 ## Wireframe
