@@ -93,7 +93,7 @@ https://####.azurewebsites.net/
 
 ## Database Schema
 
-There will be two databases for this project.  The first is the standard ASP.NET Core Identity database. The second will consist of of three tables, table one is the MaintenanceTaks table (Colulms: ID, Name, RecommendedInterval and MaintenanceDataID).  Table two the UserMaintenanceTask (Colulms: ID, FK UserID, FK MaintenanceTaksID, RecommendedInterval and ActualInterval).  The third table is the MaintenanceData table (Colulms: ID, FK MaintenanceTaksID, FK UserMaintenanceTaskID and ActualInterval)
+There will be two databases for this project.  The first is the standard ASP.NET Core Identity database. The second will consist of of three tables, table one is the MaintenanceTaks table (Colulms: ID, Name, RecommendedInterval and MaintenanceDataID).  Table two the UserMaintenanceTask (Colulms: ID, FK UserID, FK MaintenanceTaksID, and ActualInterval).  The third table is the MaintenanceTaskData table (Colulms: ID, FK MaintenanceTaksID, FK UserMaintenanceTaskID and ActualInterval)
 ![Db Schema](assets/db_schema.png)
 
 ## Wireframe
