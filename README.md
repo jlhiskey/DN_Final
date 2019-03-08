@@ -97,7 +97,7 @@ There will be two databases for this project.  The first is the standard ASP.NET
 ![Db Schema](assets/db_schema.png)
 
 ## Wireframe
-![Wireframe](assets/wireframe.png)
+![Wireframe](https://dev.azure.com/TeamRalph/_git/Maintain.NET?path=%2Fassets%2Fwf_landingpage.JPG&version=GBFriday-Prep)
 
 
 ## Credit
