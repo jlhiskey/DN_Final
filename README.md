@@ -10,24 +10,55 @@ https://####.azurewebsites.net/
 
 ## User Stories
 
-### User Story 1
+### User Story 1 - As a user I would like to land on an informative landing page.
 
 #### Features
+
+* There will be a home page with a description of the application and some helpful hints about how to use it.
+
+* I would like a navigation menu with register and login in links.
  
 #### Acceptance Criteria
 
+* Ensure that user always is directed to the landing page upon opening of the application.
 
-### User Story 2
+* Ensure there is a navigation menu with links.
+
+### User Story 2 - As a user I would like a user dashboard
 
 #### Features 
 
+* The dashboard will contain a list of user tasks links that will link to task details page.
+
+* The dashboard will contain a link to manage tasks.
+
+* The dashboard will contain link to logout 
+
 #### Acceptance Criteria
 
-### User Story 3
+* User will be directed to user dashboard after login.
+
+* User have the option to see tasks details.
+
+* User will have a link to manage tasks.
+
+### User Story 3 As a user I would like the ability to manage my tasks
 
 #### Features
 
+* Upon selecting the manage link user will be directed to a manage page.
+
+* The user will have the ability to delete a task.
+
+* The user will have the ability to create a new task.
+
 #### Acceptance Criteria
+
+* The link to manage page will direct user to manage page.
+
+* The delete option will delete the instance of the task.
+
+* The create options will create a new instance of a task.
 
 ### User Story 4
 
@@ -56,3 +87,4 @@ https://####.azurewebsites.net/
   Jason Hiskey https://github.com/jlhiskey  
   Ray Johnson 
   Deziree Teague 
+
