@@ -7,71 +7,78 @@ https://####.azurewebsites.net/
 
 ## Example Usage
 
-
 ## User Stories
 
-### User Story 1 - Landing Page.
+### User Story 1 - Landing Page
 
 #### Features
+- Site Introduction Statement
 
-* As a user I would like an informative landing page with register and login options
+- Registration form 
+  - First name
+  - Last name
+  - Zip code
+  - Email
+  - Password
+  - Password confirmation
+  - Register button
 
-* The user will be informed about the purpose and usage of the site.  Register and Login buttons will redirect to separate pages.  
+- User login form
+  - Email
+  - Password
+  - Login button
+
 #### Acceptance Criteria
 
 * Ensure that user always is directed to the landing page upon opening of the application.
 
-* Ensure there are register and login options 
+* Ensure there are registration and login options 
 
 ### User Story 2 - User Dashboard
 
 #### Features 
 
-* As a user, I would like to have access to a dashboard that allows me to view my tasks.
+- Task links that redirect to task completion page
 
-* The dashboard will contain a list of user tasks links that will link to task details page as well as link to manage tasks.
+- Drop down menu containing task options
+  - Change Oil
+  - Water plants
+  - Clean fish tank
 
 #### Acceptance Criteria
 
 * User will be directed to user dashboard after login.
 
-* User have the option to see tasks details.
+* User have the ability to navigate to task history.
 
-* User will have a link to manage tasks.
-
-
-### User Story 3 - Task Manager
+### User Story 3 - Task Management
 
 #### Features
 
-* As a user, I would like the ability to manage my tasks
+- Delete button for each task 
+  - Add prompt to confirm deletion
 
-* Upon selecting the manage link user will be directed to a task management page.  The user will have the ability to add new tasks and delete existing tasks.
+- Add new task button
 
 #### Acceptance Criteria
 
-* The delete option will delete the instance of the task.
+* The delete button will delete the instance of the a task.
 
-* There will be a drop down menu containing maintenance task options.
-
-* Add task will create a new instance of a task.
-
+* Add task will create a new instance of a task based on drop down menu.
 
 ### User Story 4 - Task Completion Page
 
 #### Features 
 
-* As a user I would like to see my maintenance task history and have the ability to mark a task as completed.
+- Complete task button submits data to task database
 
-* The user will be able to view a history of the last five of the completions of a specific task.  The user can also click the "complete" button to update task history and update universal data.
-
+- Display a table of task completion history
 
 #### Acceptance
 
 * Display the last five completed task to user.
 
 * "Complete" button allow users to submit data and update history.
-
 
 ### User Story 5 - Task Reminders/Recommendations
 
@@ -127,7 +134,6 @@ https://####.azurewebsites.net/
 ![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_landingpage.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 ![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_registration.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 ![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_login.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
-![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_userdashboard.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 ![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_managetasks.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 ![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_completedtasks.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 
