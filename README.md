@@ -76,27 +76,23 @@ https://####.azurewebsites.net/
 
 #### Acceptance
 
-* Display the last five completed task to user.
+* Ensure that user will be able to view their last 5 completed task submissions.
 
-* "Complete" button allow users to submit data and update history.
+* Ensure that "Complete" button allow users to submit data and update history.
 
 ### User Story 5 - Task Reminders/Recommendations
 
 #### Features
 
-* As a user I would like to receive email reminders and recommendation to complete a task.
+- Use Microsoft Sendgrid to send reminder emails based on set intervals  
 
-* Email reminders will be generated based on set intervals and sent to the users. 
-
-* Recommendations will be given for task intervals based on averages/seed data. 
+- Utilize machine learning data to recommend task completion time on dashboard. 
 
 #### Acceptance Criteria
 
 * Receive an email from our service notifying user that their scheduled task is due.
 
 * Provide the user with a suggested interval to complete the selected task.  
-
-
 
 ## Database Schema
 - There will be two databases for this project.  
@@ -138,10 +134,13 @@ https://####.azurewebsites.net/
 ![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_completedtasks.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
 
 
-## Credit
+## Contributors
   Deziree Teague 
+  
   Jason Few   
+  
   Jason Hiskey https://github.com/jlhiskey  
+  
   Ray Johnson 
   
 
