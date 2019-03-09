@@ -19,8 +19,7 @@ This project WILL...
 
 This project WILL NOT...
 
-* Allow users to create new items to track
-* Provide health or fitness recommendations 
+* Provide health or fitness recommendations based on machine learning data.
 
 # GOALS
 ## MVP 
@@ -56,6 +55,9 @@ Testing will include:
     - Nav Props
 - Services
     - All methods
+
+- Test Coverage: 
+    - Minimum Test Coverage: 70%
 
 2. Security: Security measures include user authorization and access control.
 
