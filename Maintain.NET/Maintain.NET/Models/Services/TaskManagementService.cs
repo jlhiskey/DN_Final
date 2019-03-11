@@ -17,7 +17,7 @@ namespace Maintain.NET.Models.Services
             _context = context;
         }
 
-        public async Task CreateTask (MaintenanceTask maintenanceTask)
+        public async Task CreateTask(MaintenanceTask maintenanceTask)
         {
             _context.MaintenanceTasks.Add(maintenanceTask);
             await _context.SaveChangesAsync();
@@ -56,7 +56,7 @@ namespace Maintain.NET.Models.Services
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FindAsync(id);
         }
 
-        bool TaskExists(int id)
+        public bool TaskExists(int id)
         {
             return _context.MaintenanceTasks.Any(ex => ex.ID == id);
         }

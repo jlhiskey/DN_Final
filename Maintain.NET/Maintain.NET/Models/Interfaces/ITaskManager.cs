@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Maintain.NET.Models.Interfaces
 {
-    interface ITaskManager
+    public interface ITaskManager
     {
         //create 
-        Task CreateTask();
+        Task CreateTask(MaintenanceTask maintenance);
 
         //read maintenance task
         Task<MaintenanceTask> GetTask(int id);
