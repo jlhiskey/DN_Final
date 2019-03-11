@@ -10,23 +10,23 @@ namespace MaintainNETTestSuite.ModelTests
     {
         public UserMaintenanceTask CreateUserMaintenanceTask()
         {
-
+            UserMaintenanceTask testUserMaintenanceTask = new UserMaintenanceTask("jimbob@test.com", 1)
+            {
+                LastComplete = 1,
+                NextComplete = 2,              
+            };
+            return testUserMaintenanceTask;
         }
 
         public MaintenanceTask CreateMaintenanceTask()
-        {
-            UserMaintenanceTask testUserMaintenanceTask = CreateUserMaintenanceTask();
-
-            List<UserMaintenanceTask> userMaintenanceTasks = new List<UserMaintenanceTask>();
-            userMaintenanceTasks.Add(testUserMaintenanceTask);
-
-
+        {           
             MaintenanceTask testMaintenanceTask = new MaintenanceTask("testName")
             {
                 ID = 1,
                 RecommendedInterval = 12,
-                UserMaintenanceTasks = userMaintenanceTasks
+                
             };
+            return testMaintenanceTask;
         }
 
 
@@ -93,9 +93,12 @@ namespace MaintainNETTestSuite.ModelTests
             UserMaintenanceTask testTaskTwo = CreateUserMaintenanceTask();
             testTaskTwo.ID = 2;
 
-            testMaintenanceTask.UserMaintenanceTasks.Add(testTaskTwo);
+            List<UserMaintenanceTask> expected = new List<UserMaintenanceTask>() { testTaskOne };
 
-            List<UserMaintenanceTask> expected = new List<UserMaintenanceTask>() { testTaskOne, testTaskTwo };
+            testMaintenanceTask.UserMaintenanceTasks = expected;
+            expected.Add(testTaskTwo);
+
+            testMaintenanceTask.UserMaintenanceTasks = expected;
 
             Assert.Same(expected, testMaintenanceTask.UserMaintenanceTasks);
         }
@@ -108,6 +111,8 @@ namespace MaintainNETTestSuite.ModelTests
             UserMaintenanceTask testTaskOne = CreateUserMaintenanceTask();            
 
             List<UserMaintenanceTask> expected = new List<UserMaintenanceTask>() { testTaskOne };
+
+            testMaintenanceTask.UserMaintenanceTasks = expected;
 
             Assert.Same(expected, testMaintenanceTask.UserMaintenanceTasks);
         }
