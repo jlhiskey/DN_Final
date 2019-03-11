@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maintain.NET", "Maintain.NET\Maintain.NET.csproj", "{808F894B-AE59-4857-A7F1-248308A969C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maintain.NET", "Maintain.NET\Maintain.NET.csproj", "{808F894B-AE59-4857-A7F1-248308A969C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintainNETTestSuite", "MaintainNETTestSuite\MaintainNETTestSuite.csproj", "{04CE6C58-D0FF-47F8-B487-D814691B3253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{808F894B-AE59-4857-A7F1-248308A969C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{808F894B-AE59-4857-A7F1-248308A969C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{808F894B-AE59-4857-A7F1-248308A969C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04CE6C58-D0FF-47F8-B487-D814691B3253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CE6C58-D0FF-47F8-B487-D814691B3253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CE6C58-D0FF-47F8-B487-D814691B3253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CE6C58-D0FF-47F8-B487-D814691B3253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
