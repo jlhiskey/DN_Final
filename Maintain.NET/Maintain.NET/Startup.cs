@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Maintain.NET.Data;
+using Maintain.NET.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,8 +32,12 @@ namespace Maintain.NET
         {
             services.AddMvc();
 
-            //Add Identity Here
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityMaintainDbContext>()
+                .AddDefaultTokenProviders();
 
+            //Add Email Here
+            services.AddScoped<IEmailSender, EmailSender>();
 
             //Add Authorization Here
 
@@ -38,7 +45,7 @@ namespace Maintain.NET
             //Add Dependency Injection Here
 
             // Switches between connection strings.
-            bool usingProduction = false;
+            bool usingProduction = true;
 
             //*********************DEFAULT CONNECTION STRINGS******************************************************************
             if (!usingProduction)
@@ -62,6 +69,8 @@ namespace Maintain.NET
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

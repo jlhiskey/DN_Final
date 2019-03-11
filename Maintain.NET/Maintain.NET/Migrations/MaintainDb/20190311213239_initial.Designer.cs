@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Maintain.NET.Migrations
+namespace Maintain.NET.Migrations.MaintainDb
 {
     [DbContext(typeof(MaintainDbContext))]
-    [Migration("20190311202832_initial")]
+    [Migration("20190311213239_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

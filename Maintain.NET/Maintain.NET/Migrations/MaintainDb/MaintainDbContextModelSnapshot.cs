@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Maintain.NET.Migrations
+namespace Maintain.NET.Migrations.MaintainDb
 {
     [DbContext(typeof(MaintainDbContext))]
     partial class MaintainDbContextModelSnapshot : ModelSnapshot
