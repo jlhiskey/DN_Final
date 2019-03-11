@@ -15,7 +15,7 @@
             <div>
              
                 <p>
-                   Hey, @User.Claims.First(c => c.Type == "FullName").Value
+                   @User.Claims.First(c => c.Type == "FullName").Value
                 </p>
                 
             </div>

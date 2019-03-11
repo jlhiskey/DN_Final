@@ -51,11 +51,17 @@ namespace Maintain.NET.Controllers
                     LastName = rvm.LastName
                 };
 
+                //runs create method
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
                 {
+                    //adds claims for full name
                     Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
+
+                    List<Claim> claims = new List<Claim> { fullNameClaim };
+
+                    await _userManager.AddClaimsAsync(user, claims);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Maintain.NET.Migrations
 {
     [DbContext(typeof(IdentityMaintainDbContext))]
-    [Migration("20190311165014_initial")]
+    [Migration("20190311204536_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,8 @@ namespace Maintain.NET.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<int>("Zip");
 
                     b.HasKey("Id");
 
