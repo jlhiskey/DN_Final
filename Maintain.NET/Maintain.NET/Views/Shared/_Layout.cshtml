@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Maintain.NET.Models
+
+@inject SignInManager<ApplicationUser> signInManager
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        @if (signInManager.IsSignedIn(User))
+        {
+            <div>
+             
+                <p>
+                   @User.Claims.First(c => c.Type == "FullName").Value
+                </p>
+                
+            </div>
+        }
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

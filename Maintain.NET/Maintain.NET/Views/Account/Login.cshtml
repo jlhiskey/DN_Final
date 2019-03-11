@@ -1,0 +1,21 @@
+﻿@model Maintain.NET.Models.ViewModels.LogInViewModel
+
+@{ 
+
+}
+
+<form method="post">
+
+    <div asp-validation-summary="All"></div>
+
+    <label asp-for="Email">Email</label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+    <button type="submit">LOGIN</button>
+
+</form>

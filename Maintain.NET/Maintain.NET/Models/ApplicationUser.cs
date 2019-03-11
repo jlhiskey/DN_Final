@@ -12,6 +12,6 @@ namespace Maintain.NET.Models
 
         public string LastName { get; set; }
 
-
+        public int Zip { get; set; }
     }
 }

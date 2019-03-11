@@ -61,6 +61,8 @@ namespace Maintain.NET.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<int>("Zip");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
