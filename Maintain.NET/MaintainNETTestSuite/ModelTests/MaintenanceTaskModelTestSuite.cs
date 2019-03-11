@@ -13,7 +13,6 @@ namespace MaintainNETTestSuite.ModelTests
 
         }
 
-
         public MaintenanceTask CreateMaintenanceTask()
         {
             UserMaintenanceTask testUserMaintenanceTask = CreateUserMaintenanceTask();
