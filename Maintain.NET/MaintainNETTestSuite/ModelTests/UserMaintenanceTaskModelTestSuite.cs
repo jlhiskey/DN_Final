@@ -15,6 +15,7 @@ namespace MaintainNETTestSuite.ModelTests
 
             UserMaintenanceTask testUserMaintenanceTask = new UserMaintenanceTask("jimbob@test.com", testMaintenanceTask.ID)
             {
+                ID = 1,
                 LastComplete = 1,
                 NextComplete = 2,
                 MaintenanceTask = testMaintenanceTask
@@ -34,7 +35,16 @@ namespace MaintainNETTestSuite.ModelTests
 
         public UserMaintenanceHistory CreateUserMaintenanceHistory()
         {
-
+            UserMaintenanceTask testUserMaintenanceTask = CreateUserMaintenanceTask();
+            UserMaintenanceHistory testUserMaintenanceHistory = new UserMaintenanceHistory()
+            {
+                ID = 1,
+                UserID = testUserMaintenanceTask.UserID,
+                UserMaintenanceTaskID = testUserMaintenanceTask.ID,
+                TimeComplete = DateTime.Now,
+                UserMaintenanceTask = testUserMaintenanceTask
+            };
+            return testUserMaintenanceHistory;
 
         }
 
@@ -162,9 +172,13 @@ namespace MaintainNETTestSuite.ModelTests
             UserMaintenanceHistory testHistoryTwo = CreateUserMaintenanceHistory();
             testHistoryTwo.ID = 2;
 
-            testUserMaintenanceTask.UserMaintenanceHistory.Add(testHistoryTwo);
+            List<UserMaintenanceHistory> expected = new List<UserMaintenanceHistory>() { testHistoryOne };
 
-            List<UserMaintenanceHistory> expected = new List<UserMaintenanceHistory>() { testHistoryOne, testHistoryTwo };
+            testUserMaintenanceTask.UserMaintenanceHistory = expected;
+
+            expected.Add(testHistoryTwo);
+
+            testUserMaintenanceTask.UserMaintenanceHistory = expected;
 
             Assert.Same(expected, testUserMaintenanceTask.UserMaintenanceHistory);
         }
@@ -177,6 +191,8 @@ namespace MaintainNETTestSuite.ModelTests
             UserMaintenanceHistory testHistoryOne = CreateUserMaintenanceHistory();
 
             List<UserMaintenanceHistory> expected = new List<UserMaintenanceHistory>() { testHistoryOne };
+
+            testUserMaintenanceTask.UserMaintenanceHistory = expected;
 
             Assert.Same(expected, testUserMaintenanceTask.UserMaintenanceHistory);
         }
