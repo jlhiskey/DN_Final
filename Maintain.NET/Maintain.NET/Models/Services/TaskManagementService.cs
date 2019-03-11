@@ -33,16 +33,6 @@ namespace Maintain.NET.Models.Services
             return await _context.MaintenanceTasks.ToListAsync();
         }
 
-        public async Task<UserMaintenanceTask> GetUserMaintenanceTask(int id)
-        {
-            return await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);
-        }
-
-        public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserMaintenanceTasks(int id)
-        {
-            return await _context.UserMaintenanceTasks.ToListAsync();
-        }
-
         //update/edit
         public async Task UpdateTask(MaintenanceTask maintenanceTask)
         {
