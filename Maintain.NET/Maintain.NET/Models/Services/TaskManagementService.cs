@@ -38,11 +38,17 @@ namespace Maintain.NET.Models.Services
             return await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);
         }
 
-        //read all of a user's tasks
-        Task<UserMaintenanceTask> GetAllUserMaintenanceTasks(int id);
+        public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserMaintenanceTasks(int id)
+        {
+            return await _context.UserMaintenanceTasks.ToListAsync();
+        }
 
         //update/edit
-        Task UpdateTask();
+        public async Task UpdateTask(MaintenanceTask maintenanceTask)
+        {
+            _context.MaintenanceTasks.Update(maintenanceTask);
+            await _context.SaveChangesAsync();
+        }
 
         //delete
         Task DeleteTask(int id);

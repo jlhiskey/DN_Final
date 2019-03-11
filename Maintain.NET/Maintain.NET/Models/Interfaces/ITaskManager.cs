@@ -20,11 +20,11 @@ namespace Maintain.NET.Models.Interfaces
         Task<UserMaintenanceTask> GetUserMaintenanceTask(int id);
 
         //read all of a user's tasks
-        Task<UserMaintenanceTask> GetAllUserMaintenanceTasks(int id);
+        Task<IEnumerable<UserMaintenanceTask>> GetAllUserMaintenanceTasks(int id);
 
         //update/edit
-        Task UpdateTask();
-
+        Task UpdateTask(MaintenanceTask maintenanceTask);
+        
         //delete
         Task DeleteTask(int id);
 
