@@ -51,8 +51,14 @@ namespace Maintain.NET.Models.Services
         }
 
         //delete
-        Task DeleteTask(int id);
+        public async Task DeleteTask(int id)
+        {
+            MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FindAsync(id);
+        }
 
-        bool TaskExists(int id);
+        bool TaskExists(int id)
+        {
+            return _context.MaintenanceTasks.Any(ex => ex.ID == id);
+        }
     }
 }
