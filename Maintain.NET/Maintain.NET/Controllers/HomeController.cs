@@ -12,5 +12,10 @@ namespace Maintain.NET.Controllers
         {
             return View();
         }
+
+        public IActionResult()
+        {
+
+        }
     }
 }

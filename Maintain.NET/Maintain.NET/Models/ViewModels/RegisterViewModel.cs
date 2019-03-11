@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maintain.NET.Models.ViewModels
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         [Required]
         [Display(Name = "First Name")]
@@ -19,6 +19,9 @@ namespace Maintain.NET.Models.ViewModels
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
+        public int Zip { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

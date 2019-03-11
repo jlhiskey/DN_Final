@@ -105,12 +105,12 @@ namespace MaintainNETTestSuite.ModelTests
         {
             MaintenanceTask testMaintenanceTask = CreateMaintenanceTask();
 
-            UserMaintenanceTask testTaskOne = CreateUserMaintenanceTask();            
+            UserMaintenanceTask testTaskOne = CreateUserMaintenanceTask();
 
             List<UserMaintenanceTask> expected = new List<UserMaintenanceTask>() { testTaskOne };
 
             Assert.Same(expected, testMaintenanceTask.UserMaintenanceTasks);
         }
-        
+
     }
 }
