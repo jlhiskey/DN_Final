@@ -11,7 +11,7 @@ namespace Maintain.NET.Models.Services
     public class TaskManagementService : ITaskManager
     {
         private MaintainDbContext _context { get; }
-
+         
         public TaskManagementService(MaintainDbContext context)
         {
             _context = context;
@@ -28,7 +28,7 @@ namespace Maintain.NET.Models.Services
             return await _context.MaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);
         }
      
-        public async Task<IEnumerable<MaintenanceTask>> GetAllTasks()
+        public async Task<IEnumerable<MaintenanceTask>> GetAllUserTasks()
         {
             return await _context.MaintenanceTasks.ToListAsync();
         }
