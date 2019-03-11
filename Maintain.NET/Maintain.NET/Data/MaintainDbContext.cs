@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Maintain.NET.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,10 @@ namespace Maintain.NET.Data
         }
 
         //TODO: Add table references here.
-
+        public DbSet<MaintenanceTask> MaintenanceTasks { get; set; }
+        public DbSet<UserMaintenanceTask> UserMaintenanceTasks { get; set; }
+        public DbSet<UserMaintenanceHistory> UserMaintenanceHistories { get; set; }
+        
     }
 }
 
