@@ -1,20 +1,147 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Maintain.NET
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Overview
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+### Deployed Site
+https://####.azurewebsites.net/
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Example Usage
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## User Stories
+
+### User Story 1 - Landing Page
+
+#### Features
+- Site Introduction Statement
+
+- Registration form 
+  - First name
+  - Last name
+  - Zip code
+  - Email
+  - Password
+  - Password confirmation
+  - Register button
+
+- User login form
+  - Email
+  - Password
+  - Login button
+
+#### Acceptance Criteria
+
+* Ensure that user always is directed to the landing page upon opening of the application.
+
+* Ensure there are registration and login options 
+
+### User Story 2 - User Dashboard
+
+#### Features 
+
+- Task links that redirect to task completion page
+
+- Drop down menu containing task options
+  - Change Oil
+  - Water plants
+  - Clean fish tank
+
+#### Acceptance Criteria
+
+* User will be directed to user dashboard after login.
+
+* User have the ability to navigate to task history.
+
+### User Story 3 - Task Management
+
+#### Features
+
+- Delete button for each task 
+  - Add prompt to confirm deletion
+
+- Add new task button
+
+#### Acceptance Criteria
+
+* The delete button will delete the instance of the a task.
+
+* Add task will create a new instance of a task based on drop down menu.
+
+### User Story 4 - Task Completion Page
+
+#### Features 
+
+- Complete task button submits data to task database
+
+- Display a table of task completion history
+
+#### Acceptance
+
+* Ensure that user will be able to view their last 5 completed task submissions.
+
+* Ensure that "Complete" button allow users to submit data and update history.
+
+### User Story 5 - Task Reminders/Recommendations
+
+#### Features
+
+- Use Microsoft Sendgrid to send reminder emails based on set intervals  
+
+- Utilize machine learning data to recommend task completion time on dashboard. 
+
+#### Acceptance Criteria
+
+* Receive an email from our service notifying user that their scheduled task is due.
+
+* Provide the user with a suggested interval to complete the selected task.  
+
+## Database Schema
+- There will be two databases for this project.  
+  - The first is the standard ASP.NET Core Identity database 
+    - Database Name: IdentityContextDB 
+    - Table: User
+      - UserID/Email string (Primary Key)
+      - First string
+      - Last string
+      - Zipcode int
+  - The second database will be the main application database.
+    - Database Name: MaintainContextDB
+    - Table: UserMaintainenceTask
+      - UserID string (Composite Key)
+      - MaintainenceTaskID int (Composite Key)
+      - LastComplete int
+      - Navagation Properties
+        - MaintainenceTask
+        - User
+        - ICollection<MaintenanceTaskData>
+    - Table: MaintainenceTask
+      - ID int (Primary Key)
+      - Name string
+      - RecommendedInterval int
+      - Navagation Properties
+        - ICollection<MaintenanceTaskData>
+    - Table: MaintainenceTaskData
+      - MaintainenceTaskID int (Foreign Key)
+      - UserMaintenanceTaskID int 
+      - ActualInterval int
+
+![Db Schema](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2FMaintainNETDBSchema.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
+
+## Wireframe
+![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_landingpage.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
+![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_registration.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
+![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_login.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
+![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_managetasks.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
+![Wireframe](https://dev.azure.com/TeamRalph/7a0156dd-df26-431a-abd8-56ab70a7d6fa/_apis/git/repositories/02698f18-9781-4ce0-bd99-2358ab005d34/Items?path=%2Fassets%2Fwf_completedtasks.JPG&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=Friday-Prep&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1)
+
+
+## Contributors
+  Deziree Teague 
+  
+  Jason Few   
+  
+  Jason Hiskey https://github.com/jlhiskey  
+  
+  Ray Johnson 
+  
+
+
