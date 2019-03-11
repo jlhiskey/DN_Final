@@ -10,7 +10,12 @@ namespace MaintainNETTestSuite.ModelTests
     {
         public UserMaintenanceTask CreateUserMaintenanceTask()
         {
-
+            UserMaintenanceTask testUserMaintenanceTask = new UserMaintenanceTask("jimbob@test.com", 1)
+            {
+                LastComplete = 1,
+                NextComplete = 2,              
+            };
+            return testUserMaintenanceTask;
         }
 
         public MaintenanceTask CreateMaintenanceTask()
@@ -27,6 +32,7 @@ namespace MaintainNETTestSuite.ModelTests
                 RecommendedInterval = 12,
                 UserMaintenanceTasks = userMaintenanceTasks
             };
+            return testMaintenanceTask;
         }
 
 
