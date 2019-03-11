@@ -17,7 +17,18 @@ namespace Maintain.NET.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Add Seeds here
-
+            modelBuilder.Entity<MaintenanceTask>().HasData(
+                new MaintenanceTask("Fish Tank")
+                {
+                    ID = 1,
+                    RecommendedInterval = 2
+                },
+                new MaintenanceTask("Oil Change")
+                {
+                    ID = 2,
+                    RecommendedInterval = 4
+                }
+                );
 
         }
 
