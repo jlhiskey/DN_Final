@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Maintain.NET.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,26 @@ namespace Maintain.NET.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Add Seeds here
-
+            modelBuilder.Entity<MaintenanceTask>().HasData(
+                new MaintenanceTask("Fish Tank")
+                {
+                    ID = 1,
+                    RecommendedInterval = 2
+                },
+                new MaintenanceTask("Oil Change")
+                {
+                    ID = 2,
+                    RecommendedInterval = 4
+                }
+                );
 
         }
 
         //TODO: Add table references here.
-
+        public DbSet<MaintenanceTask> MaintenanceTasks { get; set; }
+        public DbSet<UserMaintenanceTask> UserMaintenanceTasks { get; set; }
+        public DbSet<UserMaintenanceHistory> UserMaintenanceHistories { get; set; }
+        
     }
 }
 
