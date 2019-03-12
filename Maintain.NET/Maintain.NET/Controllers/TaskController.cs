@@ -42,7 +42,7 @@ namespace Maintain.NET.Controllers
         /// <returns> returns list in drop down in the view</returns>
         public async Task<IActionResult> Create()
         {
-            var allTask = await _context.GetAllUserTasks();
+            var allTask = await _context.GetAllTasks();
             ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
             return View();
         }

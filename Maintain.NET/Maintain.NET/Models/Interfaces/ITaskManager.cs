@@ -14,7 +14,7 @@ namespace Maintain.NET.Models.Interfaces
         Task<MaintenanceTask> GetTask(int id);
 
         //read all maintenance tasks
-        Task<IEnumerable<MaintenanceTask>> GetAllUserTasks();
+        Task<IEnumerable<MaintenanceTask>> GetAllTasks();
 
         //update/edit
         Task UpdateTask(MaintenanceTask maintenanceTask);

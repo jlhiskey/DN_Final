@@ -47,7 +47,7 @@ namespace Maintain.NET.Models.Services
         ///  gets all the task 
         /// </summary>
         /// <returns> returns all the task</returns>
-        public async Task<IEnumerable<MaintenanceTask>> GetAllUserTasks()
+        public async Task<IEnumerable<MaintenanceTask>> GetAllTasks()
         {
             return await _context.MaintenanceTasks.ToListAsync();
         }

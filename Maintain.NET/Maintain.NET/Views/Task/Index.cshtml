@@ -1,19 +1,22 @@
 ﻿@model IEnumerable<Maintain.NET.Models.UserMaintenanceTask>
-
+@using Maintain.NET.Models.Interfaces
+@inject ITaskManager TaskManagementService
 <h1>Manage Your Task</h1>
-
+@{ 
+    var tasks = await TaskManagementService.GetAllTasks();
+}
 @foreach (var usertask in Model)
 {
     <p>@usertask.MaintenanceTask.Name</p>
     <button asp-action="DeleteUserTask" asp-route="usertask.ID" type="submit">DELETE</button>
 }
 
-<form>
+<form asp-action="CreateUserTask" method="post">
     <select name="tasks">
-        <option value="Change Oil">Change Oil</option>
-        <option value="Fish Tank">Fish Tank</option>
-        <option value="Water Plants">Water Plants</option>
-        <option value="things">things</option>
+        @foreach(var i in tasks)
+        {
+            <option>@i.Name</option>
+        }
     </select>
     <br><br>
     <input type="submit">

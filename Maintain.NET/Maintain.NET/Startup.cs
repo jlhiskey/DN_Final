@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Maintain.NET.Data;
 using Maintain.NET.Models;
+using Maintain.NET.Models.Interfaces;
+using Maintain.NET.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +45,8 @@ namespace Maintain.NET
 
 
             //Add Dependency Injection Here
+            services.AddScoped<ITaskManager, TaskManagementService>();
+            services.AddScoped<IUserTaskManager, UserTaskManagementService>();
 
             // Switches between connection strings.
             bool usingProduction = false;
