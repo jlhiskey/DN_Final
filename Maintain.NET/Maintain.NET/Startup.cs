@@ -45,7 +45,7 @@ namespace Maintain.NET
             //Add Dependency Injection Here
 
             // Switches between connection strings.
-            bool usingProduction = true;
+            bool usingProduction = false;
 
             //*********************DEFAULT CONNECTION STRINGS******************************************************************
             if (!usingProduction)
