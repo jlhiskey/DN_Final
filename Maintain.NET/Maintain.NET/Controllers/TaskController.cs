@@ -32,7 +32,10 @@ namespace Maintain.NET.Controllers
             return View(await _context.GetAllTasks());
         }
 
-
+        /// <summary>
+        /// gets list of task in drop down
+        /// </summary>
+        /// <returns> returns list in drop down in the view</returns>
         public async Task<IActionResult> Create()
         {
             var allTask = await _context.GetAllTasks();
