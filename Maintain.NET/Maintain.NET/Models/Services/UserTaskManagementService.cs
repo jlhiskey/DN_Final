@@ -12,11 +12,17 @@ namespace Maintain.NET.Models.Services
     {
         private MaintainDbContext _context { get; }
 
+
         public UserTaskManagementService(MaintainDbContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// allows user to select a task
+        /// </summary>
+        /// <param name="userMaintenanceTask"> </param>
+        /// <returns></returns>
         public async Task CreateUserTask(UserMaintenanceTask userMaintenanceTask)
         {
             _context.UserMaintenanceTasks.Add(userMaintenanceTask);

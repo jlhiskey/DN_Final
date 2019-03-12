@@ -21,7 +21,7 @@ namespace Maintain.NET.Models.Interfaces
         
         //delete
         Task DeleteTask(int id);
-
+        
         bool TaskExists(int id);
     }
 }
