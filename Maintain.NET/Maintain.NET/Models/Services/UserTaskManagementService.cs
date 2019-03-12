@@ -34,9 +34,9 @@ namespace Maintain.NET.Models.Services
         /// </summary>
         /// <param name="id"> int id</param>
         /// <returns>  returns task ID</returns>
-        public async Task<UserMaintenanceTask> GetUserTask(int id)
+        public async Task<UserMaintenanceTask> GetUserTask(string userId)
         {
-            return await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);
+            return await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.UserID == userId);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Maintain.NET.Models.Services
         /// </summary>
         /// <param name="id"> task id</param>
         /// <returns> returns all task ID</returns>
-        public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(int id)
+        public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(string userId)
         {
             return await _context.UserMaintenanceTasks.ToListAsync();
         }

@@ -8,6 +8,7 @@ using Maintain.NET.Data;
 using Maintain.NET.Models;
 using Maintain.NET.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
 
 namespace Maintain.NET.Controllers
 {
@@ -15,12 +16,13 @@ namespace Maintain.NET.Controllers
     {
         private readonly ITaskManager _context;
         private readonly IUserTaskManager _usertask;
+        private UserManager<ApplicationUser> _userManager;
 
-
-        public TaskController(ITaskManager context, IUserTaskManager usertask)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _usertask = usertask;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -29,7 +31,8 @@ namespace Maintain.NET.Controllers
         /// <returns> returns a view of task</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.GetAllTasks());
+            var userId = _userManager.GetUserId(User);
+            return View(await _usertask.GetAllUserTasks(userId));
         }
 
         /// <summary>
@@ -38,14 +41,10 @@ namespace Maintain.NET.Controllers
         /// <returns> returns list in drop down in the view</returns>
         public async Task<IActionResult> Create()
         {
-            var allTask = await _context.GetAllTasks();
+            var allTask = await _context.GetAllUserTasks();
             ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
             return View();
         }
-
-
-
-
 
         /// <summary>
         /// deletes task and returns user to task view page
