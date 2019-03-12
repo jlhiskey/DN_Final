@@ -49,5 +49,9 @@ namespace Maintain.NET.Models
             UserID = userID;
             MaintenanceTaskID = maintenanceTaskID;
         }
+
+        public UserMaintenanceTask()
+        {
+        }
     }
 }

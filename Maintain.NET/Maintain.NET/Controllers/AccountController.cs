@@ -73,7 +73,7 @@ namespace Maintain.NET.Controllers
 
                     await RegistrationEmail(user);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Task");
                 }
                 
 
@@ -119,7 +119,7 @@ namespace Maintain.NET.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Task");
                 }
             }
 
