@@ -41,6 +41,8 @@ namespace Maintain.NET.Models
 
             msg.AddContent(MimeType.Text, htmlMessage);
 
+            msg.SendAt = 1552408500;
+
             var result = await client.SendEmailAsync(msg);
         }
     }
