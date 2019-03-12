@@ -8,6 +8,7 @@ using Maintain.NET.Data;
 using Maintain.NET.Models;
 using Maintain.NET.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
 
 namespace Maintain.NET.Controllers
 {
@@ -15,12 +16,13 @@ namespace Maintain.NET.Controllers
     {
         private readonly ITaskManager _context;
         private readonly IUserTaskManager _usertask;
+        private UserManager<ApplicationUser> _userManager;
 
-
-        public TaskController(ITaskManager context, IUserTaskManager usertask)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _usertask = usertask;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -29,23 +31,21 @@ namespace Maintain.NET.Controllers
         /// <returns> returns a view of task</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.GetAllTasks());
+            var userId = _userManager.GetUserId(User);
+            var tasks = await _usertask.GetAllUserTasks(userId);
+            return View(tasks);
         }
 
         /// <summary>
         /// gets list of task in drop down
         /// </summary>
         /// <returns> returns list in drop down in the view</returns>
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> CreateUserTask()
         {
             var allTask = await _context.GetAllTasks();
             ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
             return View();
         }
-
-
-
-
 
         /// <summary>
         /// deletes task and returns user to task view page
@@ -59,13 +59,8 @@ namespace Maintain.NET.Controllers
                 return NotFound();
             }
 
-            var task = await _usertask.GetUserTask(id);
-            if (task == null)
-            {
-                return NotFound();
-            }
-
-            return View(task);
+            await _usertask.DeleteUserTask(id);
+            return View();
         }
 
          /// <summary>
@@ -78,7 +73,20 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
+        //public IActionResult Index()
+        //{
 
+        //// dropdown stuff....maybe
+        //List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
+
+        //    // getting Data from database using entity framwork core
+        //    tasklist = (from task in _context.MaintenanceTask select task).ToList();
+
+        //    // inserting select Item in list
+        //    tasklist.Insert(0, new MaintenanceTask { ID = 0, "Select" });
+
+        //    ViewBag.ListofTask = tasklist;
+        //}
 
     }
 }
