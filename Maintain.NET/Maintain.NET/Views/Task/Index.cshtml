@@ -2,9 +2,13 @@
 @using Maintain.NET.Models.Interfaces
 @inject ITaskManager TaskManagementService
 <h1>Manage Your Task</h1>
-@{ 
+@{
     var tasks = await TaskManagementService.GetAllTasks();
+    
+    Layout = "_Layout";
+    
 }
+
 @foreach (var usertask in Model)
 {
     <p>@usertask.MaintenanceTask.Name</p>
@@ -13,7 +17,7 @@
 
 <form asp-action="CreateUserTask" method="post">
     <select name="tasks">
-        @foreach(var i in tasks)
+        @foreach (var i in tasks)
         {
             <option>@i.Name</option>
         }
