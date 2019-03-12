@@ -28,24 +28,20 @@ namespace Maintain.NET.Models
         /// <returns></returns>
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            
-            string key = _configuration["Sendgrid_Api_Key"];
-            SendGridClient client = new SendGridClient(key);
+   
+            SendGridClient client = new SendGridClient(_configuration["Sendgrid_Api_Key"]);
 
             SendGridMessage msg = new SendGridMessage();
 
-            var from = new EmailAddress("noreply@MaintainNET.com", "Maintain.NET Admin");
-            var to = new EmailAddress(email);
-
-            var message = MailHelper.CreateSingleEmail(from, to, subject, "something is wrong", "hey");
-
-            msg.SetFrom("noreply.Maintain.NET.com", "Maintain.NET Admin");
+            msg.SetFrom("noreply@Maintain.NET.com", "Maintain.NET Admin");
 
             msg.AddTo(email);
+
             msg.SetSubject(subject);
+
             msg.AddContent(MimeType.Text, htmlMessage);
 
-            var result = await client.SendEmailAsync(message);
+            var result = await client.SendEmailAsync(msg);
         }
     }
 }
