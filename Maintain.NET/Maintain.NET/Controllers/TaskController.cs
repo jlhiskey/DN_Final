@@ -81,11 +81,16 @@ namespace Maintain.NET.Controllers
         public IActionResult Index()
         {
 
-        // dropdown stuff
+        // dropdown stuff....maybe
         List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
 
-        // getting Data from database using entity framwork core
-        tasklist = 
+            // getting Data from database using entity framwork core
+            tasklist = (from task in _context.MaintenanceTask select task).ToList();
+
+            // inserting select Item in list
+            tasklist.Insert(0, new MaintenanceTask { ID = 0, "Select" });
+
+            ViewBag.ListofTask = tasklist;
         }
 
     }
