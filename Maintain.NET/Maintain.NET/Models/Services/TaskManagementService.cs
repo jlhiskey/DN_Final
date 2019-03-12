@@ -28,7 +28,7 @@ namespace Maintain.NET.Models.Services
             return await _context.MaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);
         }
      
-        public async Task<IEnumerable<MaintenanceTask>> GetAllUserTasks()
+        public async Task<IEnumerable<MaintenanceTask>> GetAllTasks()
         {
             return await _context.MaintenanceTasks.ToListAsync();
         }

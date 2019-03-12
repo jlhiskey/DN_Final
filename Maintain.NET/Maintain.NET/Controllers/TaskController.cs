@@ -29,14 +29,14 @@ namespace Maintain.NET.Controllers
         /// <returns> returns a view of task</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.GetAllUserTasks());
+            return View(await _context.GetAllTasks());
         }
 
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var allTask = _context.
-            ViewData["UserTaskID"] = new SelectList(_context., "ID", "ID");
+            var allTask = await _context.GetAllTasks();
+            ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
             return View();
         }
 
