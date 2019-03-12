@@ -29,17 +29,32 @@ namespace Maintain.NET.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// gets user task
+        /// </summary>
+        /// <param name="id"> int id</param>
+        /// <returns>  returns task ID</returns>
         public async Task<UserMaintenanceTask> GetUserTask(int id)
         {
             return await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);
         }
 
+        /// <summary>
+        /// selects all user task
+        /// </summary>
+        /// <param name="id"> task id</param>
+        /// <returns> returns all task ID</returns>
         public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(int id)
         {
             return await _context.UserMaintenanceTasks.ToListAsync();
         }
 
         //update/edit
+        /// <summary>
+        /// updates user task
+        /// </summary>
+        /// <param name="userMaintenanceTask"> user maintenance task</param>
+        /// <returns> updated task</returns>
         public async Task UpdateUserTask(UserMaintenanceTask userMaintenanceTask)
         {
             _context.UserMaintenanceTasks.Update(userMaintenanceTask);
@@ -47,11 +62,21 @@ namespace Maintain.NET.Models.Services
         }
 
         //delete
+        /// <summary>
+        /// deletes user task
+        /// </summary>
+        /// <param name="id"> task id</param>
+        /// <returns> removes deleted task</returns>
         public async Task DeleteUserTask(int id)
         {
             UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FindAsync(id);
         }
 
+        /// <summary>
+        /// checks to see if task exist
+        /// </summary>
+        /// <param name="id"> task id</param>
+        /// <returns> returns a response if a task exist</returns>
         public bool UserTaskExists(int id)
         {
             return _context.UserMaintenanceTasks.Any(ex => ex.ID == id);
