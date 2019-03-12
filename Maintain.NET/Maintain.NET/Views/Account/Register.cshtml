@@ -4,31 +4,33 @@
     Layout = "_Layout";
 }
 
+<h1>Maintain.Net Registration</h1>
+
 <form method="post">
 
     <div asp-validation-summary="All"></div>
 
-    <label asp-for="Email">Enter Your Email Address</label>
+    <label asp-for="Email">Email Address:</label>
     <input asp-for="Email" />
     <span asp-validation-for="Email"></span>
 
-    <label asp-for="FirstName">First Name</label>
+    <label asp-for="FirstName">First Name:</label>
     <input asp-for="FirstName" />
     <span asp-validation-for="FirstName"></span>
 
-    <label asp-for="LastName">Last Name</label>
+    <label asp-for="LastName">Last Name:</label>
     <input asp-for="LastName" />
     <span asp-validation-for="LastName"></span>
 
-    <label asp-for="Zip">Zip Code</label>
+    <label asp-for="Zip">Zip Code:</label>
     <input asp-for="Zip" />
     <span asp-validation-for="Zip"></span>
 
-    <label asp-for="Password">Choose A Password</label>
+    <label asp-for="Password">Password:</label>
     <input asp-for="Password" />
     <span asp-validation-for="Password"></span>
 
-    <label asp-for="ConfirmPassword">Confirm Your Password</label>
+    <label asp-for="ConfirmPassword">Confirm Password:</label>
     <input asp-for="ConfirmPassword" />
     <span asp-validation-for="ConfirmPassword"></span>
 
