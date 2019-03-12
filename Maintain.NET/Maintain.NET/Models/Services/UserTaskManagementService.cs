@@ -12,7 +12,6 @@ namespace Maintain.NET.Models.Services
     {
         private MaintainDbContext _context { get; }
 
-
         public UserTaskManagementService(MaintainDbContext context)
         {
             _context = context;
@@ -23,9 +22,15 @@ namespace Maintain.NET.Models.Services
         /// </summary>
         /// <param name="userMaintenanceTask"> </param>
         /// <returns></returns>
-        public async Task CreateUserTask(UserMaintenanceTask userMaintenanceTask)
+        public async Task CreateUserTask(MaintenanceTask maintenanceTask, string userId)
         {
-            _context.UserMaintenanceTasks.Add(userMaintenanceTask);
+            UserMaintenanceTask uMTask = new UserMaintenanceTask(userId, maintenanceTask.ID);
+            uMTask.LastComplete = 0;
+            uMTask.MaintenanceTask = maintenanceTask;
+            uMTask.NextComplete = 0;
+            uMTask.UserMaintenanceHistory = await _context.UserMaintenanceHistories.Where(h => h.UserID == userId).ToListAsync();
+            
+            _context.UserMaintenanceTasks.Add(uMTask);
             await _context.SaveChangesAsync();
         }
 
@@ -69,7 +74,9 @@ namespace Maintain.NET.Models.Services
         /// <returns> removes deleted task</returns>
         public async Task DeleteUserTask(int id)
         {
-            UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FindAsync(id);
+            var userMaintenanceTask = await _context.UserMaintenanceTasks.FindAsync(id);
+            _context.Remove(userMaintenanceTask);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>

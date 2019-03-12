@@ -1,9 +1,12 @@
-﻿
-@{
-    ViewData["Title"] = "View";
-}
+﻿@model IEnumerable<Maintain.NET.Models.UserMaintenanceTask>
 
 <h1>Manage Your Task</h1>
+
+@foreach (var usertask in Model)
+{
+    <p>@usertask.MaintenanceTask.Name</p>
+    <button asp-action="DeleteUserTask" asp-route="usertask.ID" type="submit">DELETE</button>
+}
 
 <form>
     <select name="tasks">

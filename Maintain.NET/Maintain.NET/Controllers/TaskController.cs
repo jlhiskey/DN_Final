@@ -32,7 +32,8 @@ namespace Maintain.NET.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = _userManager.GetUserId(User);
-            return View(await _usertask.GetAllUserTasks(userId));
+            var tasks = await _usertask.GetAllUserTasks(userId);
+            return View(tasks);
         }
 
         /// <summary>
@@ -58,13 +59,8 @@ namespace Maintain.NET.Controllers
                 return NotFound();
             }
 
-            var task = await _usertask.GetUserTask(id);
-            if (task == null)
-            {
-                return NotFound();
-            }
-
-            return View(task);
+            await _usertask.DeleteUserTask(id);
+            return View();
         }
 
          /// <summary>
@@ -77,20 +73,20 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
-        public IActionResult Index()
-        {
+        //public IActionResult Index()
+        //{
 
-        // dropdown stuff....maybe
-        List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
+        //// dropdown stuff....maybe
+        //List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
 
-            // getting Data from database using entity framwork core
-            tasklist = (from task in _context.MaintenanceTask select task).ToList();
+        //    // getting Data from database using entity framwork core
+        //    tasklist = (from task in _context.MaintenanceTask select task).ToList();
 
-            // inserting select Item in list
-            tasklist.Insert(0, new MaintenanceTask { ID = 0, "Select" });
+        //    // inserting select Item in list
+        //    tasklist.Insert(0, new MaintenanceTask { ID = 0, "Select" });
 
-            ViewBag.ListofTask = tasklist;
-        }
+        //    ViewBag.ListofTask = tasklist;
+        //}
 
     }
 }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Maintain.NET.Models
 {
-    public class DatabaseContext : MaintainDbContext
-    {
-        public DatabaseContext(MaintainDbContextOptions<DatabaseContext> options) : base(options)
-        {
+    //public class DatabaseContext : MaintainDbContext
+    //{
+    //    public DatabaseContext(MaintainDbContextOptions<DatabaseContext> options) : base(options)
+    //    {
 
-        }
-        public DbSet<MaintenanceTask> MaintenanceTask { get; set; }
+    //    }
+    //    public DbSet<MaintenanceTask> MaintenanceTask { get; set; }
 
-    }
+    //}
 }

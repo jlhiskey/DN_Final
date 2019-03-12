@@ -45,7 +45,7 @@ namespace Maintain.NET
             //Add Dependency Injection Here
 
             // Switches between connection strings.
-            bool usingProduction = true;
+            bool usingProduction = false;
 
             //*********************DEFAULT CONNECTION STRINGS******************************************************************
             if (!usingProduction)
@@ -65,8 +65,8 @@ namespace Maintain.NET
 
             }
             // for making dropdown ??? hope so...
-            var connection = Configuration.GetConnectionString("DatabaseConnection");
-            services.AddDbContext<MaintenanceTask>(options => options.UseSqlServer(connection));
+            //var connection = Configuration.GetConnectionString("DatabaseConnection");
+            //services.AddDbContext<MaintenanceTask>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
