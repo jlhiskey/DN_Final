@@ -64,6 +64,9 @@ namespace Maintain.NET
                 services.AddDbContext<IdentityMaintainDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
 
             }
+            // for making dropdown ??? hope so...
+            var connection = Configuration.GetConnectionString("DatabaseConnection");
+            services.AddDbContext<MaintenanceTask>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

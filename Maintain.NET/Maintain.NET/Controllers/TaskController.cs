@@ -78,7 +78,15 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
+        public IActionResult Index()
+        {
 
+        // dropdown stuff
+        List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
+
+        // getting Data from database using entity framwork core
+        tasklist = 
+        }
 
     }
 }
