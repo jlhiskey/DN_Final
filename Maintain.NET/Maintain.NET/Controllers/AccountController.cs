@@ -93,8 +93,8 @@ namespace Maintain.NET.Controllers
 
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"<h1 align='center'>Hey {thisUser.FirstName}, thanks for registering with Maintain.NET!</h1>");
-            sb.AppendLine("<p align='center'>We hope you have a good day!</p>");
+            sb.AppendLine($"Hey {thisUser.FirstName}, thanks for registering with Maintain.NET!");
+            sb.AppendLine("We hope you have a good day!");
 
             await _emailSender.SendEmailAsync(thisUser.Email, "Registration Confirmation", sb.ToString());
         }
