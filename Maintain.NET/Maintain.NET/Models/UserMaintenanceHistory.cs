@@ -20,6 +20,11 @@ namespace Maintain.NET.Models
         public int UserMaintenanceTaskID { get; set; }
 
         /// <summary>
+        /// User Maintenance Task ID
+        /// </summary>
+        public int MaintenanceTaskID { get; set; }
+
+        /// <summary>
         /// Records when the task was completed
         /// </summary>
         public DateTime TimeComplete { get; set; }
