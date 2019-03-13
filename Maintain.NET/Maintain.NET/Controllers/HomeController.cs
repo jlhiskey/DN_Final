@@ -15,26 +15,6 @@ namespace Maintain.NET.Controllers
         /// <returns>Home View</returns>
         public IActionResult Index()
         {
-            UserMaintenanceHistory one = new UserMaintenanceHistory();
-            one.Interval = 2;
-
-            UserMaintenanceHistory two = new UserMaintenanceHistory();
-            two.Interval = 4;
-
-            UserMaintenanceHistory three = new UserMaintenanceHistory();
-            two.Interval = 6;
-
-            UserMaintenanceHistory four = new UserMaintenanceHistory();
-            two.Interval = 1;
-
-            UserMaintenanceHistory five = new UserMaintenanceHistory();
-            two.Interval = 5;
-
-            List<UserMaintenanceHistory> list = new List<UserMaintenanceHistory>() { one, two, three, four, five };
-
-            MachineLearning.Run(list, 1, 5);
-
-
             return View();
         }
 
