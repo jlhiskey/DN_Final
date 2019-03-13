@@ -115,12 +115,12 @@ namespace Maintain.NET.Controllers
         //    ViewBag.ListofTask = tasklist;
         //}
         //------------------
-        public async Task<IActionResult> Complete(int userTaskID, string userID)
-        {
-            await _usertask.GetUserTask(userID);
+        //public async Task<IActionResult> Complete(int userTaskID, string userID)
+        //{
+        //    await _usertask.GetUserTask(userID);
 
-            return RedirectToAction(nameof(Index));
-        }
+        //    return RedirectToAction(nameof(Index));
+        //}
         //------------------
     }
 }

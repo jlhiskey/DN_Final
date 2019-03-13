@@ -5,35 +5,67 @@
 }
 
 <h1>Maintain.Net Registration</h1>
+<div id="register">
 
-<form method="post">
+<form method="post" >
 
     <div asp-validation-summary="All"></div>
+    <div id="email" class="boxes">
 
-    <label asp-for="Email">Email Address:</label>
+    <label id="email" asp-for="Email">Email Address:</label>
     <input asp-for="Email" />
     <span asp-validation-for="Email"></span>
+    </div>
+
+
+    <div id="Fname" class="boxes">
 
     <label asp-for="FirstName">First Name:</label>
     <input asp-for="FirstName" />
     <span asp-validation-for="FirstName"></span>
+    </div>
+
+    <div id="Lname" class="boxes">
 
     <label asp-for="LastName">Last Name:</label>
     <input asp-for="LastName" />
     <span asp-validation-for="LastName"></span>
+    </div>
 
+    <div id="zip" class="boxes">
     <label asp-for="Zip">Zip Code:</label>
     <input asp-for="Zip" />
     <span asp-validation-for="Zip"></span>
 
+    </div>
+
+    <div id="pass" class="boxes">
+
     <label asp-for="Password">Password:</label>
     <input asp-for="Password" />
     <span asp-validation-for="Password"></span>
+    </div>
 
+    <div id="pass2" class="boxes">
     <label asp-for="ConfirmPassword">Confirm Password:</label>
     <input asp-for="ConfirmPassword" />
     <span asp-validation-for="ConfirmPassword"></span>
 
-    <button type="submit">Create Account</button>
+    </div>
+
+    <button type="submit" id="create-btn">Create Account</button>
 
 </form>
+</div>
+
+<div class="row">
+    <div class="column">
+        <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Snow" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="https://images.unsplash.com/photo-1496264093734-ffe59b144f9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Forest" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="https://images.unsplash.com/photo-1531523668299-e20047c89111?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80" alt="Mountains" style="width:100%">
+    </div>
+</div>
