@@ -94,33 +94,48 @@ namespace Maintain.NET.Models.Services
         {
             return _context.UserMaintenanceTasks.Any(ex => ex.ID == id);
         }
-        //----------------------
+        
         public async Task CompleteTask(int userTaskID)
         {
-            UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
-            long lastComplete = userMaintenanceTask.LastComplete;
-            
-
             TimeConverter timeConverter = new TimeConverter();
 
-            long interval = timeConverter.CalculateInterval(lastComplete);
+            UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
+            long lastComplete = userMaintenanceTask.LastComplete;
             userMaintenanceTask.LastComplete = timeConverter.DateToUnix(DateTime.Now);
 
+            long interval = timeConverter.CalculateInterval(lastComplete);
+            
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
 
             UserMaintenanceHistory userMaintenanceHistory = new UserMaintenanceHistory();
             userMaintenanceHistory.UserID = userMaintenanceTask.UserID;
             userMaintenanceHistory.TimeComplete = DateTime.Now;
             userMaintenanceHistory.MaintenanceTaskID = maintenanceTask.ID;
+
+            _context.Update(userMaintenanceTask);
+            _context.Update(userMaintenanceHistory);
+
+            await _context.SaveChangesAsync();
+
+            await UpdateMaintenanceTaskInterval(userMaintenanceTask.ID);
         }
 
         public async Task UpdateMaintenanceTaskInterval(int userTaskID)
         {
             UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
-            var allMaintenanceHistory = await _context.UserMaintenanceHistories.Select(umh => umh.MaintenanceTaskID == maintenanceTask.ID);
+            IEnumerable<UserMaintenanceHistory> allMaintenanceHistory = _context.UserMaintenanceHistories.Where(umh => umh.MaintenanceTaskID == maintenanceTask.ID);
+            
+            if(allMaintenanceHistory.Count() > 0)
+            {
+                maintenanceTask.RecommendedInterval = MachineLearning.Run(allMaintenanceHistory, maintenanceTask.MinimumInterval, maintenanceTask.MaximumInterval);
+            }
+            userMaintenanceTask.NextComplete = userMaintenanceTask.LastComplete + maintenanceTask.RecommendedInterval;
+            _context.Update(userMaintenanceTask);
+            _context.Update(maintenanceTask);
 
+            await _context.SaveChangesAsync();
         }
-        //----------------------
+        
     }
 }

@@ -30,9 +30,9 @@ namespace Maintain.NET.Models
         /// Builds Trains and Evaluates UserMaintnenaceHistory and returns a long that represents the recommended interval of MaintenanceTask.
         /// </summary>
         /// <returns>long representing recommended interval of MaintenanceTask</returns>
-        public static double Run(List<UserMaintenanceHistory> incomingData, long lower, long upper)
+        public static long Run(IEnumerable<UserMaintenanceHistory> incomingData, long lower, long upper)
         {
-            float recommendedInterval = 0;
+            long recommendedInterval = 0;
 
             MLContext mlContext = new MLContext();
 
@@ -43,7 +43,7 @@ namespace Maintain.NET.Models
             return recommendedInterval;
         }
 
-        public static IntervalData[] ParseData(List<UserMaintenanceHistory> incomingData)
+        public static IntervalData[] ParseData(IEnumerable<UserMaintenanceHistory> incomingData)
         {
             IntervalData[] dataArray = new IntervalData[incomingData.Count()];
 
@@ -72,7 +72,7 @@ namespace Maintain.NET.Models
         /// <param name="lower">Sets the lower bound of UserMaintenanceHistory.Interval value that will be used in calculation.</param>
         /// <param name="upper">Sets the upper bound of UserMaintenanceHistory.Interval value that will be used in calculation.</param>
         /// <returns>Returns a trained regression model that will be used by Prediction() to return a recommended interval.</returns>
-        private static ITransformer BuildTrainEvaluate(MLContext mlContext, List<UserMaintenanceHistory> incomingData)
+        private static ITransformer BuildTrainEvaluate(MLContext mlContext, IEnumerable<UserMaintenanceHistory> incomingData)
         {
             IntervalData[] dataArray = ParseData(incomingData);
 
@@ -102,7 +102,7 @@ namespace Maintain.NET.Models
             return trainedModel;
         }
 
-        private static long Evaluate(MLContext mlContext, ITransformer model, List<UserMaintenanceHistory> incomingData, long lower, long upper)
+        private static long Evaluate(MLContext mlContext, ITransformer model, IEnumerable<UserMaintenanceHistory> incomingData, long lower, long upper)
         {
             long recommendedInterval = 0;
 
