@@ -21,12 +21,28 @@ namespace Maintain.NET.Data
                 new MaintenanceTask("Fish Tank")
                 {
                     ID = 1,
-                    RecommendedInterval = 2
+                    RecommendedInterval = 86400
                 },
                 new MaintenanceTask("Oil Change")
                 {
                     ID = 2,
-                    RecommendedInterval = 4
+                    RecommendedInterval = 86400
+                }
+                );
+
+            modelBuilder.Entity<UserMaintenanceHistory>().HasData(
+                new UserMaintenanceHistory()
+                {
+                    ID = 1,
+                    Interval = 86400,
+                    MaintenanceTaskID = 1
+
+                },
+                new UserMaintenanceHistory()
+                {
+                    ID = 2,
+                    Interval = 86400,
+                    MaintenanceTaskID = 2
                 }
                 );
 

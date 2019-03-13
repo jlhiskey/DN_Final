@@ -24,11 +24,13 @@ namespace Maintain.NET.Models.Services
         /// <returns></returns>
         public async Task CreateUserTask(int id, string userId)
         {
+            TimeConverter timeConverter = new TimeConverter();
+
             MaintenanceTask task = _context.MaintenanceTasks.FirstOrDefault(m => m.ID == id);
             UserMaintenanceTask uMTask = new UserMaintenanceTask(userId, id);
-            uMTask.LastComplete = 0;
+            uMTask.LastComplete = timeConverter.DateToUnix(DateTime.Now);
             uMTask.MaintenanceTask = task;
-            uMTask.NextComplete = 0;
+            uMTask.NextComplete = uMTask.LastComplete + task.RecommendedInterval;
             uMTask.UserMaintenanceHistory = await _context.UserMaintenanceHistories.Where(h => h.UserID == userId).ToListAsync();
             
             _context.UserMaintenanceTasks.Add(uMTask);

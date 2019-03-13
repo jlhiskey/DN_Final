@@ -14,7 +14,7 @@
 {
     <p>@usertask.MaintenanceTask.Name</p>
     <a asp-action="DeleteUserTask" asp-route-id="@usertask.ID">DELETE</a>
-    <a asp-action="Manage">Complete Task</a>
+    <a asp-action="Manage" asp-route-id="@usertask.ID">Complete Task</a>
 
 }
 

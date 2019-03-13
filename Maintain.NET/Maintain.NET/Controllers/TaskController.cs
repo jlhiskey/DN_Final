@@ -117,7 +117,7 @@ namespace Maintain.NET.Controllers
         //------------------
         public async Task<IActionResult> Complete(int userTaskID, string userID)
         {
-            await _usertask.GetUserTask(userID);
+            await _usertask.GetUserTask(userID, userTaskID);
 
             return RedirectToAction(nameof(Index));
         }
