@@ -19,16 +19,16 @@ namespace Maintain.NET.Controllers
             one.Interval = 2;
 
             UserMaintenanceHistory two = new UserMaintenanceHistory();
-            one.Interval = 4;
+            two.Interval = 4;
 
             UserMaintenanceHistory three = new UserMaintenanceHistory();
-            one.Interval = 6;
+            two.Interval = 6;
 
             UserMaintenanceHistory four = new UserMaintenanceHistory();
-            one.Interval = 1;
+            two.Interval = 1;
 
             UserMaintenanceHistory five = new UserMaintenanceHistory();
-            one.Interval = 5;
+            two.Interval = 5;
 
             List<UserMaintenanceHistory> list = new List<UserMaintenanceHistory>() { one, two, three, four, five };
 
