@@ -4,15 +4,18 @@
 <h1>Manage Your Task</h1>
 @{
     var tasks = await TaskManagementService.GetAllTasks();
-    
+
     Layout = "_Layout";
-    
+
 }
 
 @foreach (var usertask in Model)
+
 {
     <p>@usertask.MaintenanceTask.Name</p>
-    @*<button asp-action="DeleteUserTask" asp-route="usertask.ID" type="submit">DELETE</button>*@
+    <a asp-action="DeleteUserTask" asp-route-id="@usertask.ID">DELETE</a>
+    <a asp-action="Manage">Complete Task</a>
+
 }
 
 <p>
@@ -21,12 +24,12 @@
 
 
 @*<form asp-action="CreateUserTask" method="post">
-    <select name="tasks">
-        @foreach (var i in tasks)
-        {
-            <option>@i.Name</option>
-        }
-    </select>
-    <br><br>
-    <input type="submit">
-</form>*@
+        <select name="tasks">
+            @foreach (var i in tasks)
+            {
+                <option>@i.Name</option>
+            }
+        </select>
+        <br><br>
+        <input type="submit">
+    </form>*@

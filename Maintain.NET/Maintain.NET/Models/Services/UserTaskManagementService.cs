@@ -40,9 +40,11 @@ namespace Maintain.NET.Models.Services
         /// </summary>
         /// <param name="id"> int id</param>
         /// <returns>  returns task ID</returns>
-        public async Task<UserMaintenanceTask> GetUserTask(string userId)
+        public async Task<UserMaintenanceTask> GetUserTask(string userId, int userMaintenanceTaskID)
         {
-            return await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.UserID == userId);
+            UserMaintenanceTask task = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == userMaintenanceTaskID);
+            task.MaintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(t => t.ID == task.MaintenanceTaskID);
+            return task;
         }
 
         /// <summary>
@@ -52,10 +54,10 @@ namespace Maintain.NET.Models.Services
         /// <returns> returns all task ID</returns>
         public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(string userId)
         {
-            var tasks = await _context.UserMaintenanceTasks.ToListAsync();
+            var tasks = await _context.UserMaintenanceTasks.Where(i => i.UserID == userId).ToListAsync();
             foreach (var i in tasks)
             {
-                i.MaintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(m => m.ID == i.ID);
+                i.MaintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(m => m.ID== i.MaintenanceTaskID);
             }
             return tasks;
         }
