@@ -107,6 +107,10 @@ namespace Maintain.NET.Models.Services
             long lastComplete = userMaintenanceTask.LastComplete;
             userMaintenanceTask.LastComplete = timeConverter.DateToUnix(DateTime.Now);
 
+            _context.Update(userMaintenanceTask);
+
+            //await _context.SaveChangesAsync();
+
             long interval = timeConverter.CalculateInterval(lastComplete);
             
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
@@ -115,13 +119,9 @@ namespace Maintain.NET.Models.Services
             userMaintenanceHistory.UserID = userMaintenanceTask.UserID;
             userMaintenanceHistory.TimeComplete = DateTime.Now;
             userMaintenanceHistory.MaintenanceRef = maintenanceTask.ID;
-            userMaintenanceHistory.Interval = interval;
+            userMaintenanceHistory.Interval = interval;            
 
-            _context.Update(userMaintenanceTask);
-
-            await _context.SaveChangesAsync();
-
-            _context.Update(userMaintenanceHistory);
+            _context.Add(userMaintenanceHistory);
 
             await _context.SaveChangesAsync();
 

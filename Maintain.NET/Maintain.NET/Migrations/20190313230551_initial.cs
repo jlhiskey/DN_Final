@@ -49,9 +49,10 @@ namespace Maintain.NET.Migrations
                 name: "UserMaintenanceHistories",
                 columns: table => new
                 {
-                    UserID = table.Column<string>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserID = table.Column<string>(nullable: true),
                     UserMaintenanceTaskID = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: false),
                     MaintenanceRef = table.Column<int>(nullable: false),
                     TimeComplete = table.Column<DateTime>(nullable: false),
                     Interval = table.Column<long>(nullable: false),
@@ -60,7 +61,7 @@ namespace Maintain.NET.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserMaintenanceHistories", x => new { x.UserID, x.UserMaintenanceTaskID });
+                    table.PrimaryKey("PK_UserMaintenanceHistories", x => x.ID);
                     table.ForeignKey(
                         name: "FK_UserMaintenanceHistories_UserMaintenanceTasks_UserMaintenanceTaskMaintenanceTaskID_UserMaintenanceTaskUserID",
                         columns: x => new { x.UserMaintenanceTaskMaintenanceTaskID, x.UserMaintenanceTaskUserID },
@@ -74,17 +75,17 @@ namespace Maintain.NET.Migrations
                 columns: new[] { "ID", "MaximumInterval", "MinimumInterval", "Name", "RecommendedInterval" },
                 values: new object[,]
                 {
-                    { 1, 172800L, 43200L, "Fish Tank", 86400L },
-                    { 2, 172800L, 43200L, "Oil Change", 86400L }
+                    { 1, 10000L, 2L, "Fish Tank", 1000L },
+                    { 2, 10000L, 2L, "Oil Change", 1000L }
                 });
 
             migrationBuilder.InsertData(
                 table: "UserMaintenanceHistories",
-                columns: new[] { "UserID", "UserMaintenanceTaskID", "ID", "Interval", "MaintenanceRef", "TimeComplete", "UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID" },
+                columns: new[] { "ID", "Interval", "MaintenanceRef", "TimeComplete", "UserID", "UserMaintenanceTaskID", "UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID" },
                 values: new object[,]
                 {
-                    { "ghost@ghost.com", 1, 1, 86400L, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null },
-                    { "ghost@ghost.com", 2, 2, 86400L, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null }
+                    { 1, 1000L, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ghost@ghost.com", 1, null, null },
+                    { 2, 1000L, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ghost@ghost.com", 2, null, null }
                 });
 
             migrationBuilder.InsertData(

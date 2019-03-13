@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Maintain.NET.Migrations
 {
     [DbContext(typeof(MaintainDbContext))]
-    [Migration("20190313215024_initial")]
+    [Migration("20190313230551_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,28 +44,26 @@ namespace Maintain.NET.Migrations
                         new
                         {
                             ID = 1,
-                            MaximumInterval = 172800L,
-                            MinimumInterval = 43200L,
+                            MaximumInterval = 10000L,
+                            MinimumInterval = 2L,
                             Name = "Fish Tank",
-                            RecommendedInterval = 86400L
+                            RecommendedInterval = 1000L
                         },
                         new
                         {
                             ID = 2,
-                            MaximumInterval = 172800L,
-                            MinimumInterval = 43200L,
+                            MaximumInterval = 10000L,
+                            MinimumInterval = 2L,
                             Name = "Oil Change",
-                            RecommendedInterval = 86400L
+                            RecommendedInterval = 1000L
                         });
                 });
 
             modelBuilder.Entity("Maintain.NET.Models.UserMaintenanceHistory", b =>
                 {
-                    b.Property<string>("UserID");
-
-                    b.Property<int>("UserMaintenanceTaskID");
-
-                    b.Property<int>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<long>("Interval");
 
@@ -73,11 +71,15 @@ namespace Maintain.NET.Migrations
 
                     b.Property<DateTime>("TimeComplete");
 
+                    b.Property<string>("UserID");
+
+                    b.Property<int>("UserMaintenanceTaskID");
+
                     b.Property<int?>("UserMaintenanceTaskMaintenanceTaskID");
 
                     b.Property<string>("UserMaintenanceTaskUserID");
 
-                    b.HasKey("UserID", "UserMaintenanceTaskID");
+                    b.HasKey("ID");
 
                     b.HasIndex("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID");
 
@@ -86,21 +88,21 @@ namespace Maintain.NET.Migrations
                     b.HasData(
                         new
                         {
-                            UserID = "ghost@ghost.com",
-                            UserMaintenanceTaskID = 1,
                             ID = 1,
-                            Interval = 86400L,
-                            MaintenanceRef = 0,
-                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Interval = 1000L,
+                            MaintenanceRef = 1,
+                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = "ghost@ghost.com",
+                            UserMaintenanceTaskID = 1
                         },
                         new
                         {
-                            UserID = "ghost@ghost.com",
-                            UserMaintenanceTaskID = 2,
                             ID = 2,
-                            Interval = 86400L,
-                            MaintenanceRef = 0,
-                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Interval = 1000L,
+                            MaintenanceRef = 2,
+                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = "ghost@ghost.com",
+                            UserMaintenanceTaskID = 2
                         });
                 });
 

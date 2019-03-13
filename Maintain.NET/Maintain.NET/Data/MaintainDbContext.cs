@@ -19,24 +19,24 @@ namespace Maintain.NET.Data
             // Composite Key Associations
             modelBuilder.Entity<UserMaintenanceTask>().HasKey(umt => new { umt.MaintenanceTaskID, umt.UserID });
 
-            // Composite Key Associations
-            modelBuilder.Entity<UserMaintenanceHistory>().HasKey(umh => new { umh.UserID, umh.UserMaintenanceTaskID });
+      
+            //modelBuilder.Entity<UserMaintenanceHistory>().HasKey(umh => new { umh.UserID, umh.UserMaintenanceTaskID });
 
             //TODO: Add Seeds here
             modelBuilder.Entity<MaintenanceTask>().HasData(
                 new MaintenanceTask("Fish Tank")
                 {
                     ID = 1,
-                    RecommendedInterval = 86400,
-                    MaximumInterval = 172800,
-                    MinimumInterval = 43200
+                    RecommendedInterval = 1000,
+                    MaximumInterval = 10000,
+                    MinimumInterval = 2
                 },
                 new MaintenanceTask("Oil Change")
                 {
                     ID = 2,
-                    RecommendedInterval = 86400,
-                    MaximumInterval = 172800,
-                    MinimumInterval = 43200
+                    RecommendedInterval = 1000,
+                    MaximumInterval = 10000,
+                    MinimumInterval = 2
                 }
                 );
 
@@ -55,16 +55,18 @@ namespace Maintain.NET.Data
                 new UserMaintenanceHistory()
                 {
                     ID = 1,
-                    Interval = 86400,    
+                    Interval = 1000,    
                     UserID = "ghost@ghost.com",
-                    UserMaintenanceTaskID = 1
+                    UserMaintenanceTaskID = 1,
+                    MaintenanceRef = 1
                 },
                 new UserMaintenanceHistory()
                 {
                     ID = 2,
-                    Interval = 86400,
+                    Interval = 1000,
                     UserID = "ghost@ghost.com",
-                    UserMaintenanceTaskID = 2
+                    UserMaintenanceTaskID = 2,
+                    MaintenanceRef = 2
                 }
                 );
 

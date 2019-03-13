@@ -118,7 +118,11 @@ namespace Maintain.NET.Models
                 }
                 counter++;
             }
-            recommendedInterval = recommendedInterval / savedData;
+            if(savedData > 0)
+            {
+                recommendedInterval = recommendedInterval / savedData;
+            }
+            
 
             var predictionFunction = model.CreatePredictionEngine<IntervalData, IntervalPrediction>(mlContext);
 
