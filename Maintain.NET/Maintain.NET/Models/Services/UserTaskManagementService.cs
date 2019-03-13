@@ -118,7 +118,7 @@ namespace Maintain.NET.Models.Services
         {
             UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
-            var allMaintenanceHistory = await _context.UserMaintenanceHistories.Select(umh => umh.MaintenanceTaskID == maintenanceTask.ID);
+            //var allMaintenanceHistory = await _context.UserMaintenanceHistories.Select(umh => umh.MaintenanceTaskID == maintenanceTask.ID);
 
         }
         //----------------------
