@@ -6,6 +6,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="~/StyleSheet.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -13,11 +15,11 @@
         @if (signInManager.IsSignedIn(User))
         {
             <div>
-             
+
                 <p>
-                   @User.Claims.First(c => c.Type == "FullName").Value
+                    @User.Claims.First(c => c.Type == "FullName").Value
                 </p>
-                
+
             </div>
         }
     </div>
