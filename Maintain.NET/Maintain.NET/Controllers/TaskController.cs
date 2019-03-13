@@ -36,6 +36,11 @@ namespace Maintain.NET.Controllers
             return View(tasks);
         }
 
+        public IActionResult Manage()
+        {
+            return View();
+        }
+
         /// <summary>
         /// gets list of task in drop down
         /// </summary>
@@ -64,7 +69,7 @@ namespace Maintain.NET.Controllers
             //    await _context.SaveChangesAsync();
             //    return RedirectToAction(nameof(Index));
             //}
-            return View();
+            return RedirectToAction("Index", "Task");
         }
 
         /// <summary>
@@ -78,9 +83,11 @@ namespace Maintain.NET.Controllers
             {
                 return NotFound();
             }
+            //var isd = Int32.Parse(Request.Form["task"]);
 
             await _usertask.DeleteUserTask(id);
-            return View();
+
+            return RedirectToAction("Index", "Task");
         }
 
          /// <summary>

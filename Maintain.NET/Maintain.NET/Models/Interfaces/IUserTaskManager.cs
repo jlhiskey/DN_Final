@@ -11,7 +11,7 @@ namespace Maintain.NET.Models.Interfaces
         Task CreateUserTask(int id, string userId);
 
         //read a user's task
-        Task<UserMaintenanceTask> GetUserTask(string userId);
+        Task<UserMaintenanceTask> GetUserTask(string userId, int userMaintenanceTaskID);
 
         //read all of a user's tasks
         Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(string userId);
