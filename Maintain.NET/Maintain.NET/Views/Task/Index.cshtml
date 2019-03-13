@@ -13,13 +13,13 @@
     <a asp-action="CreateUserTask">Add New Task</a>
 </p>
 
-@*@foreach (var usertask in Model)
+@foreach (var usertask in Model)
 {
     <p>@usertask.MaintenanceTask.Name</p>
-    <button asp-action="DeleteUserTask" asp-route="usertask.ID" type="submit">DELETE</button>
+    @*<button asp-action="DeleteUserTask" asp-route="usertask.ID" type="submit">DELETE</button>*@
 }
 
-<form asp-action="CreateUserTask" method="post">
+@*<form asp-action="CreateUserTask" method="post">
     <select name="tasks">
         @foreach (var i in tasks)
         {

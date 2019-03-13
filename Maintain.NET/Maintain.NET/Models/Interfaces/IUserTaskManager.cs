@@ -8,7 +8,7 @@ namespace Maintain.NET.Models.Interfaces
     public interface IUserTaskManager
     {
         //create 
-        Task CreateUserTask(MaintenanceTask MaintenanceTask, string userId);
+        Task CreateUserTask(int id, string userId);
 
         //read a user's task
         Task<UserMaintenanceTask> GetUserTask(string userId);

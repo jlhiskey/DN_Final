@@ -22,11 +22,12 @@ namespace Maintain.NET.Models.Services
         /// </summary>
         /// <param name="userMaintenanceTask"> </param>
         /// <returns></returns>
-        public async Task CreateUserTask(MaintenanceTask maintenanceTask, string userId)
+        public async Task CreateUserTask(int id, string userId)
         {
-            UserMaintenanceTask uMTask = new UserMaintenanceTask(userId, maintenanceTask.ID);
+            MaintenanceTask task = _context.MaintenanceTasks.FirstOrDefault(m => m.ID == id);
+            UserMaintenanceTask uMTask = new UserMaintenanceTask(userId, id);
             uMTask.LastComplete = 0;
-            uMTask.MaintenanceTask = maintenanceTask;
+            uMTask.MaintenanceTask = task;
             uMTask.NextComplete = 0;
             uMTask.UserMaintenanceHistory = await _context.UserMaintenanceHistories.Where(h => h.UserID == userId).ToListAsync();
             
@@ -51,7 +52,12 @@ namespace Maintain.NET.Models.Services
         /// <returns> returns all task ID</returns>
         public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(string userId)
         {
-            return await _context.UserMaintenanceTasks.ToListAsync();
+            var tasks = await _context.UserMaintenanceTasks.ToListAsync();
+            foreach (var i in tasks)
+            {
+                i.MaintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(m => m.ID == i.ID);
+            }
+            return tasks;
         }
 
         //update/edit
