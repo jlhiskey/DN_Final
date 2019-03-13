@@ -36,9 +36,11 @@ namespace Maintain.NET.Controllers
             return View(tasks);
         }
 
-        public IActionResult Manage()
+        public async Task<IActionResult> Manage(int userTaskID)
         {
-            return View();
+            string userID = _userManager.GetUserId(User);
+            UserMaintenanceTask userMaintenanceTask = await _usertask.GetUserTask(userID, userTaskID);
+            return View(userMaintenanceTask);
         }
 
         /// <summary>
@@ -115,9 +117,11 @@ namespace Maintain.NET.Controllers
         //    ViewBag.ListofTask = tasklist;
         //}
         //------------------
-        public async Task<IActionResult> Complete(int userTaskID, string userID)
+        public async Task<IActionResult> Complete(int userTaskID)
         {
-            await _usertask.GetUserTask(userID, userTaskID);
+            //string userID = _userManager.GetUserId(User);
+            //await _usertask.GetUserTask(userID, userTaskID);
+            await _usertask.Complete(userTaskID);
 
             return RedirectToAction(nameof(Index));
         }

@@ -16,17 +16,38 @@ namespace Maintain.NET.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Composite Key Associations
+            modelBuilder.Entity<UserMaintenanceTask>().HasKey(umt => new { umt.MaintenanceTaskID, umt.UserID });
+
+            // Composite Key Associations
+            modelBuilder.Entity<UserMaintenanceHistory>().HasKey(umh => new { umh.UserID, umh.UserMaintenanceTaskID });
+
             //TODO: Add Seeds here
             modelBuilder.Entity<MaintenanceTask>().HasData(
                 new MaintenanceTask("Fish Tank")
                 {
                     ID = 1,
-                    RecommendedInterval = 86400
+                    RecommendedInterval = 86400,
+                    MaximumInterval = 172800,
+                    MinimumInterval = 43200
                 },
                 new MaintenanceTask("Oil Change")
                 {
                     ID = 2,
-                    RecommendedInterval = 86400
+                    RecommendedInterval = 86400,
+                    MaximumInterval = 172800,
+                    MinimumInterval = 43200
+                }
+                );
+
+            modelBuilder.Entity<UserMaintenanceTask>().HasData(
+                new UserMaintenanceTask("ghost@ghost.com", 1)
+                {
+                    ID = 1,                    
+                },
+                new UserMaintenanceTask("ghost@ghost.com", 2)
+                {
+                    ID = 2,                    
                 }
                 );
 
@@ -34,15 +55,16 @@ namespace Maintain.NET.Data
                 new UserMaintenanceHistory()
                 {
                     ID = 1,
-                    Interval = 86400,
-                    MaintenanceTaskID = 1
-
+                    Interval = 86400,    
+                    UserID = "ghost@ghost.com",
+                    UserMaintenanceTaskID = 1
                 },
                 new UserMaintenanceHistory()
                 {
                     ID = 2,
                     Interval = 86400,
-                    MaintenanceTaskID = 2
+                    UserID = "ghost@ghost.com",
+                    UserMaintenanceTaskID = 2
                 }
                 );
 

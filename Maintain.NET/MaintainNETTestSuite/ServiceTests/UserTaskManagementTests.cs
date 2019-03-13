@@ -19,7 +19,7 @@ namespace MaintainNETTestSuite.ServiceTests
 
             using(MaintainDbContext context = new MaintainDbContext(options))
             {
-                UserMaintenanceTask userMaintenance = new UserMaintenanceTask();
+                //UserMaintenanceTask userMaintenance = new UserMaintenanceTask();
 
             }
         }

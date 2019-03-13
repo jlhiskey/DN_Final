@@ -99,7 +99,7 @@ namespace Maintain.NET.Models.Services
             return _context.UserMaintenanceTasks.Any(ex => ex.ID == id);
         }
         
-        public async Task CompleteTask(int userTaskID)
+        public async Task Complete(int userTaskID)
         {
             TimeConverter timeConverter = new TimeConverter();
 
@@ -114,9 +114,13 @@ namespace Maintain.NET.Models.Services
             UserMaintenanceHistory userMaintenanceHistory = new UserMaintenanceHistory();
             userMaintenanceHistory.UserID = userMaintenanceTask.UserID;
             userMaintenanceHistory.TimeComplete = DateTime.Now;
-            userMaintenanceHistory.MaintenanceTaskID = maintenanceTask.ID;
+            userMaintenanceHistory.MaintenanceRef = maintenanceTask.ID;
+            userMaintenanceHistory.Interval = interval;
 
             _context.Update(userMaintenanceTask);
+
+            await _context.SaveChangesAsync();
+
             _context.Update(userMaintenanceHistory);
 
             await _context.SaveChangesAsync();
@@ -128,7 +132,10 @@ namespace Maintain.NET.Models.Services
         {
             UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
-            IEnumerable<UserMaintenanceHistory> allMaintenanceHistory = _context.UserMaintenanceHistories.Where(umh => umh.MaintenanceTaskID == maintenanceTask.ID);
+
+            var allExistingMaintenanceHistory = await _context.UserMaintenanceHistories.ToListAsync();
+         
+            IEnumerable<UserMaintenanceHistory> allMaintenanceHistory = _context.UserMaintenanceHistories.Where(umh => umh.MaintenanceRef == maintenanceTask.ID);
             
             if(allMaintenanceHistory.Count() > 0)
             {

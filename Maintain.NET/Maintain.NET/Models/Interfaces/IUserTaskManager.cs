@@ -23,5 +23,9 @@ namespace Maintain.NET.Models.Interfaces
         Task DeleteUserTask(int id);
 
         bool UserTaskExists(int id);
+
+        Task Complete(int userTaskID);
+
+        Task UpdateMaintenanceTaskInterval(int userTaskID);
     }
 }
