@@ -9,6 +9,13 @@ h1, h3 {
 
 button {
     font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    background-color: teal;
+    padding: .5vw;
+    border: 2px, solid;
+    border: .12vw solid mintcream;
+    border-radius: .3vw;
+    font-size: .7vw;
 }
 .text-container{
     margin-left:auto;
