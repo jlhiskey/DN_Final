@@ -94,5 +94,33 @@ namespace Maintain.NET.Models.Services
         {
             return _context.UserMaintenanceTasks.Any(ex => ex.ID == id);
         }
+        //----------------------
+        public async Task CompleteTask(int userTaskID)
+        {
+            UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
+            long lastComplete = userMaintenanceTask.LastComplete;
+            
+
+            TimeConverter timeConverter = new TimeConverter();
+
+            long interval = timeConverter.CalculateInterval(lastComplete);
+            userMaintenanceTask.LastComplete = timeConverter.DateToUnix(DateTime.Now);
+
+            MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
+
+            UserMaintenanceHistory userMaintenanceHistory = new UserMaintenanceHistory();
+            userMaintenanceHistory.UserID = userMaintenanceTask.UserID;
+            userMaintenanceHistory.TimeComplete = DateTime.Now;
+            userMaintenanceHistory.MaintenanceTaskID = maintenanceTask.ID;
+        }
+
+        public async Task UpdateMaintenanceTaskInterval(int userTaskID)
+        {
+            UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
+            MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
+            var allMaintenanceHistory = await _context.UserMaintenanceHistories.Select(umh => umh.MaintenanceTaskID == maintenanceTask.ID);
+
+        }
+        //----------------------
     }
 }
