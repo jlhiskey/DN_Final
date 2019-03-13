@@ -23,6 +23,12 @@ namespace Maintain.NET.Models
         [Display(Name = "Recommended Interval")]
         public long RecommendedInterval { get; set; }
 
+        [Display(Name = "Minimum Interval")]
+        public long MinimumInterval { get; set; }
+
+        [Display(Name = "Maxiumum Interval")]
+        public long MaximumInterval { get; set; }
+
         // Navigation Properties
         /// <summary>
         /// Collection of UserMaintenanceTasks based off of ID
