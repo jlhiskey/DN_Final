@@ -40,12 +40,29 @@ namespace Maintain.NET.Controllers
         /// gets list of task in drop down
         /// </summary>
         /// <returns> returns list in drop down in the view</returns>
+        [HttpGet]
         public async Task<IActionResult> CreateUserTask()
         {
             var allTask = await _context.GetAllTasks();
             ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
             return View();
         }
+
+        //----------------------ASYNCINN REFERENCE BELOW TO POST USER TASK-------------------------------------
+
+        //[HttpPost]
+        //public async Task<IActionResult> Create([Bind("AmenitiesID,RoomID")] RoomAmenities roomAmenities)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(roomAmenities);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["AmenitiesID"] = new SelectList(_context.Amenities, "ID", "ID", roomAmenities.AmenitiesID);
+        //    ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", roomAmenities.RoomID);
+        //    return View(roomAmenities);
+        //}
 
         /// <summary>
         /// deletes task and returns user to task view page
