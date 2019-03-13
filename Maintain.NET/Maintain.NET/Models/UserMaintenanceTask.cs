@@ -23,12 +23,12 @@ namespace Maintain.NET.Models
         /// <summary>
         /// Last time that the task was completed.
         /// </summary>
-        public int LastComplete { get; set; }
+        public long LastComplete { get; set; }
 
         /// <summary>
         /// Current time that the task has completed.
         /// </summary>
-        public int NextComplete { get; set; }
+        public long NextComplete { get; set; }
 
         // Navigation Properties
 

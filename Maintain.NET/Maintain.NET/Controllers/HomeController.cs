@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Maintain.NET.Models;
 
 namespace Maintain.NET.Controllers
 {
@@ -33,6 +34,15 @@ namespace Maintain.NET.Controllers
         public IActionResult Login()
         {
             return RedirectToAction("Login", "Account");
+        }
+
+        public IActionResult Test()
+        {
+            
+
+
+
+            return View();
         }
     }
 }

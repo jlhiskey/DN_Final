@@ -24,7 +24,12 @@ namespace Maintain.NET.Models
         /// </summary>
         public DateTime TimeComplete { get; set; }
 
+        //Interval to be sent to machine learning
+        public long Interval { get; set; }
+
         // Navigation Properties
+
+
 
         public UserMaintenanceTask UserMaintenanceTask { get; set; }
     }
