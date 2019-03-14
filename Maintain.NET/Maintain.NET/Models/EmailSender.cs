@@ -13,9 +13,7 @@ namespace Maintain.NET.Models
         private IConfiguration _configuration;
 
         private readonly IUserTaskManager _usertask;
-
-        private long sendAt { get; set; }
-
+        
         public EmailSender(IConfiguration configuration, IUserTaskManager usertask)
         {
             _configuration = configuration;
@@ -36,7 +34,7 @@ namespace Maintain.NET.Models
 
             SendGridMessage msg = new SendGridMessage();
 
-            msg.SetFrom("noreply@Maintain.NET.com", "Maintain.NET Admin");
+            msg.SetFrom("noreply@MaintainNET.com", "Maintain.NET Admin");
 
             msg.AddTo(email);
 
@@ -44,20 +42,10 @@ namespace Maintain.NET.Models
 
             msg.AddContent(MimeType.Text, htmlMessage);
 
-            if(sendAt > 0)
-            {
-                msg.SendAt = sendAt;
-
-                await client.SendEmailAsync(msg);
-            }
             
 
             var result = await client.SendEmailAsync(msg);
         }
-
-        public async Task GetDate(long date)
-        {
-            sendAt = date;
-        }
+        
     }
 }

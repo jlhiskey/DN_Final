@@ -20,15 +20,14 @@ namespace Maintain.NET.Controllers
         private readonly IUserTaskManager _usertask;
         private UserManager<ApplicationUser> _userManager;
         private IEmailSender _emailSender;
-        private EmailSender _email;
+        
 
-        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender, EmailSender email)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _context = context;
             _usertask = usertask;
             _userManager = userManager;
-            _emailSender = emailSender;
-            _email = email;
+            _emailSender = emailSender;          
         }
 
         /// <summary>
@@ -103,9 +102,7 @@ namespace Maintain.NET.Controllers
             var user = await _userManager.GetUserAsync(User);
 
             await _usertask.Complete(userTaskID);
-
             await AlertEmail(user, userTaskID);
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -121,8 +118,6 @@ namespace Maintain.NET.Controllers
             sb.AppendLine($"{task.MaintenanceTask.Name} is due {timeConverter.UnixToDate(task.NextComplete)}!");
 
             sb.AppendLine("GET IT DONE!");
-
-            await _email.GetDate(task.NextComplete);
 
             await _emailSender.SendEmailAsync(thisUser.Email, "TASK DUE", sb.ToString());
         }
