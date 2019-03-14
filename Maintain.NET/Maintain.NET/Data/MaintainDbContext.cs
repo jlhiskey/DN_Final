@@ -18,8 +18,7 @@ namespace Maintain.NET.Data
         {
             // Composite Key Associations
             modelBuilder.Entity<UserMaintenanceTask>().HasKey(umt => new { umt.MaintenanceTaskID, umt.UserID });
-
-      
+     
             //modelBuilder.Entity<UserMaintenanceHistory>().HasKey(umh => new { umh.UserID, umh.UserMaintenanceTaskID });
 
             //TODO: Add Seeds here

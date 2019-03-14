@@ -20,15 +20,14 @@ namespace Maintain.NET.Controllers
         private readonly IUserTaskManager _usertask;
         private UserManager<ApplicationUser> _userManager;
         private IEmailSender _emailSender;
-        private EmailSender _email;
+        
 
-        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender, EmailSender email)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _context = context;
             _usertask = usertask;
             _userManager = userManager;
-            _emailSender = emailSender;
-            _email = email;
+            _emailSender = emailSender;          
         }
 
         /// <summary>
@@ -56,26 +55,20 @@ namespace Maintain.NET.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateUserTask()
         {
-            var allTasks = await _context.GetAllTasks();
-            ViewData["MaintnenceTaskID"] = new SelectList(allTasks, "ID", "Name");
-
-
-            return View();
+            var allTask = await _context.GetAllTasks();
+            
+            return View(allTask);
         }
 
-        /// <summary>
-        /// Creates a new user task
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>View, user dashboard</returns>
+
         [HttpPost]
         public async Task<IActionResult> Create(int id)
         {
-            //var isd = Int32.Parse(Request.Form["task"]);
+            var isd = Int32.Parse(Request.Form["task"]);
 
             var user = _userManager.GetUserId(User);
 
-            await _usertask.CreateUserTask(id, user);
+            await _usertask.CreateUserTask(isd, user);
             
             return RedirectToAction("Index", "Task");
         }
@@ -83,12 +76,12 @@ namespace Maintain.NET.Controllers
         /// <summary>
         /// deletes task and returns user to task view page
         /// </summary>
-        /// <param name="id">user task</param>
+        /// <param name="userTaskID">user task</param>
         /// <returns> task view page</returns>
-        public async Task<IActionResult> DeleteUserTask(int id)
+        public async Task<IActionResult> DeleteUserTask(int userTaskID)
         {
             
-            await _usertask.DeleteUserTask(id);
+            await _usertask.DeleteUserTask(userTaskID);
 
             return RedirectToAction("Index", "Task");
         }
@@ -103,28 +96,16 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
-        /// <summary>
-        /// Tells app that the task was complete
-        /// </summary>
-        /// <param name="userTaskID"></param>
-        /// <returns>Sends an email notifying when next due date is</returns>
+        //------------------
         public async Task<IActionResult> Complete(int userTaskID)
         {
             var user = await _userManager.GetUserAsync(User);
 
             await _usertask.Complete(userTaskID);
-
             await AlertEmail(user, userTaskID);
-
             return RedirectToAction(nameof(Index));
         }
 
-        /// <summary>
-        /// Compiles Due date notification email
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="userTaskID"></param>
-        /// <returns></returns>
         public async Task AlertEmail(ApplicationUser user, int userTaskID)
         {
             TimeConverter timeConverter = new TimeConverter();
@@ -140,6 +121,6 @@ namespace Maintain.NET.Controllers
 
             await _emailSender.SendEmailAsync(thisUser.Email, "TASK DUE", sb.ToString());
         }
-       
+        //------------------
     }
 }
