@@ -46,6 +46,7 @@ namespace Maintain.NET.Models.Services
         {
             UserMaintenanceTask task = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == userMaintenanceTaskID);
             task.MaintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(t => t.ID == task.MaintenanceTaskID);
+            task.UserMaintenanceHistory = await _context.UserMaintenanceHistories.Where(h => h.UserMaintenanceTaskID == userMaintenanceTaskID).Take(10).ToListAsync();
             return task;
         }
 
