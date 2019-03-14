@@ -50,24 +50,24 @@ namespace Maintain.NET.Data
                 }
                 );
 
-            //modelBuilder.Entity<UserMaintenanceHistory>().HasData(
-            //    new UserMaintenanceHistory()
-            //    {
-            //        ID = 1,
-            //        Interval = 1000,
-            //        UserID = "ghost@ghost.com",
-            //        UserMaintenanceTaskID = 1,
-            //        MaintenanceRef = 1
-            //    },
-            //    new UserMaintenanceHistory()
-            //    {
-            //        ID = 2,
-            //        Interval = 1000,
-            //        UserID = "ghost@ghost.com",
-            //        UserMaintenanceTaskID = 2,
-            //        MaintenanceRef = 2
-            //    }
-            //    );
+            modelBuilder.Entity<UserMaintenanceHistory>().HasData(
+                new UserMaintenanceHistory()
+                {
+                    ID = 1,
+                    Interval = 1000,
+                    UserID = "ghost@ghost.com",
+                    UserMaintenanceTaskID = 1,
+                    MaintenanceRef = 1
+                },
+                new UserMaintenanceHistory()
+                {
+                    ID = 2,
+                    Interval = 1000,
+                    UserID = "ghost@ghost.com",
+                    UserMaintenanceTaskID = 2,
+                    MaintenanceRef = 2
+                }
+                );
 
         }
 
