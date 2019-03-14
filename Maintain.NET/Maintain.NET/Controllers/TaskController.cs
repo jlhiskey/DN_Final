@@ -9,8 +9,6 @@ using Maintain.NET.Models;
 using Maintain.NET.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
-using System.Text;
-using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Maintain.NET.Controllers
 {
@@ -19,16 +17,12 @@ namespace Maintain.NET.Controllers
         private readonly ITaskManager _context;
         private readonly IUserTaskManager _usertask;
         private UserManager<ApplicationUser> _userManager;
-        private IEmailSender _emailSender;
-        private EmailSender _mail;
 
-        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender, EmailSender mail)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _usertask = usertask;
             _userManager = userManager;
-            _emailSender = emailSender;
-            _mail = mail;
         }
 
         /// <summary>
@@ -56,27 +50,22 @@ namespace Maintain.NET.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateUserTask()
         {
-            var allTask = await _context.GetAllTasks();
-            //ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
-            return View(allTask);
-        }
+            var allTasks = await _context.GetAllTasks();
+            ViewData["MaintnenceTaskID"] = new SelectList(allTasks, "ID", "Name");
 
-        //----------------------ASYNCINN REFERENCE BELOW TO POST USER TASK-------------------------------------
+
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(int id)
         {
-            var isd = Int32.Parse(Request.Form["task"]);
+            //var isd = Int32.Parse(Request.Form["task"]);
 
             var user = _userManager.GetUserId(User);
 
-            await _usertask.CreateUserTask(isd, user);
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(roomAmenities);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
+            await _usertask.CreateUserTask(id, user);
+            
             return RedirectToAction("Index", "Task");
         }
 
@@ -87,11 +76,7 @@ namespace Maintain.NET.Controllers
         /// <returns> task view page</returns>
         public async Task<IActionResult> DeleteUserTask(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            
             await _usertask.DeleteUserTask(id);
 
             return RedirectToAction("Index", "Task");
@@ -102,29 +87,18 @@ namespace Maintain.NET.Controllers
          /// </summary>
          /// <param name="id"> user task id</param>
          /// <returns> true or false</returns>
-        
+        private bool UserTaskExist(int id)
+        {
+            return _usertask.UserTaskExists(id);
+        }
+
+        //------------------
         public async Task<IActionResult> Complete(int userTaskID)
         {
-            //string userID = _userManager.GetUserId(User);
-            //await _usertask.GetUserTask(userID, userTaskID);
+            
             await _usertask.Complete(userTaskID);
 
             return RedirectToAction(nameof(Index));
-        }
-
-        public async Task AlertEmail(ApplicationUser user, int userTaskID)
-        {
-           var task = await _usertask.GetUserTask(user.Id, userTaskID);
-
-            ApplicationUser thisUser = await _userManager.FindByEmailAsync(user.Email);
-
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine($"{task.MaintenanceTask.Name} is due {task.NextComplete}");
-            sb.AppendLine("GET IT DONE!");
-            await _mail.GetDate(task.NextComplete);
-
-            await _emailSender.SendEmailAsync(thisUser.Email, "Task Alert", sb.ToString());
         }
         //------------------
     }

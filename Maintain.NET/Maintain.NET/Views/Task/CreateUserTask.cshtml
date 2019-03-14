@@ -1,6 +1,7 @@
-﻿@model List<Maintain.NET.Models.MaintenanceTask>
+﻿@model Maintain.NET.Models.UserMaintenanceTask
 
 @{
+    ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
 
@@ -11,17 +12,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @*<label asp-for="Model" class="control-label"></label>*@
-                <select name ="task" class="form-control">
-                    @foreach(var item in Model)
-                    {
-                        <option value="@item.ID">@item.Name</option>
-                    }
-                </select>
-
+                <label asp-for="MaintenanceTaskID" class="control-label"></label>
+                <select asp-for="MaintenanceTaskID" class="form-control" asp-items="ViewBag.MaintnenceTaskID"></select>
             </div>
+            
             <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-primary" />
+                <button type="submit" value="Create" class="btn btn-primary">Add </button>
             </div>
         </form>
     </div>
