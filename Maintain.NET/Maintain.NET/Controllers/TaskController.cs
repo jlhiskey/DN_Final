@@ -9,6 +9,8 @@ using Maintain.NET.Models;
 using Maintain.NET.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
+using System.Text;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Maintain.NET.Controllers
 {
@@ -17,12 +19,16 @@ namespace Maintain.NET.Controllers
         private readonly ITaskManager _context;
         private readonly IUserTaskManager _usertask;
         private UserManager<ApplicationUser> _userManager;
+        private IEmailSender _emailSender;
+        private EmailSender _email;
 
-        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender, EmailSender email)
         {
             _context = context;
             _usertask = usertask;
             _userManager = userManager;
+            _emailSender = emailSender;
+            _email = email;
         }
 
         /// <summary>
@@ -94,10 +100,31 @@ namespace Maintain.NET.Controllers
         //------------------
         public async Task<IActionResult> Complete(int userTaskID)
         {
-            
+            var user = await _userManager.GetUserAsync(User);
+
             await _usertask.Complete(userTaskID);
 
+            await AlertEmail(user, userTaskID);
+
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task AlertEmail(ApplicationUser user, int userTaskID)
+        {
+            TimeConverter timeConverter = new TimeConverter();
+            ApplicationUser thisUser = await _userManager.FindByEmailAsync(user.Email);
+
+            var task = await _usertask.GetUserTask(user.Id, userTaskID);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{task.MaintenanceTask.Name} is due {timeConverter.UnixToDate(task.NextComplete)}!");
+
+            sb.AppendLine("GET IT DONE!");
+
+            await _email.GetDate(task.NextComplete);
+
+            await _emailSender.SendEmailAsync(thisUser.Email, "TASK DUE", sb.ToString());
         }
         //------------------
     }
