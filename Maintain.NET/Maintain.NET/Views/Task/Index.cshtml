@@ -2,7 +2,7 @@
 @using Maintain.NET.Models.Interfaces
 @using Maintain.NET.Models
 @inject ITaskManager TaskManagementService
-<h1>Manage Your Task</h1>
+<h1>Manage Your Tasks</h1>
 @{
     var tasks = await TaskManagementService.GetAllTasks();
 
@@ -12,22 +12,22 @@
 
 }
 
-<div class="text-container">
+<div class="text-container-manage">
     
 @foreach (var usertask in Model)
 
 {
     <p>Due Date: @timeConverter.UnixToDate(usertask.NextComplete)</p>
     <p>@usertask.MaintenanceTask.Name</p>
-    <a asp-action="DeleteUserTask" asp-route-id="@usertask.ID">DELETE</a>
-    <a asp-action="Manage" asp-route-id="@usertask.ID">Complete Task</a>
+    <a asp-action="DeleteUserTask" asp-route-id="@usertask.ID" id="a-button">Delete</a>
+    <a asp-action="Manage" asp-route-id="@usertask.ID" id="a-button">Complete Task</a>
 
 }
 
 </div>
 
 <p>
-    <a asp-action="CreateUserTask">Add New Task</a>
+    <a asp-action="CreateUserTask" id="a-button">Add New Task</a>
 </p>
 
 
