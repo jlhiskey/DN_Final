@@ -4,7 +4,7 @@
 @inject MaintainDbContext _context
 
 @{ 
-    var history = _context.UserMaintenanceHistories.OrderByDescending(m => m.ID == Model.ID).Take(10);
+    var history = _context.UserMaintenanceHistories.OrderByDescending(m => m.UserMaintenanceTaskID == Model.ID).Take(10);
     
 }
 
