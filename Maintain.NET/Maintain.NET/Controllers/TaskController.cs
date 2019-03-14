@@ -41,6 +41,11 @@ namespace Maintain.NET.Controllers
             return View(tasks);
         }
 
+        /// <summary>
+        /// Takes user to manage page
+        /// </summary>
+        /// <param name="userTaskID"></param>
+        /// <returns>Manage page</returns>
         public async Task<IActionResult> Manage(int userTaskID)
         {
             string userID = _userManager.GetUserId(User);
@@ -60,7 +65,11 @@ namespace Maintain.NET.Controllers
             return View(allTask);
         }
 
-
+        /// <summary>
+        /// Creates a new user task
+        /// </summary>
+        /// <param name="id">Task ID</param>
+        /// <returns>View user dashboard</returns>
         [HttpPost]
         public async Task<IActionResult> Create(int id)
         {
@@ -96,7 +105,11 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
-        //------------------
+        /// <summary>
+        /// Marks a taks complete
+        /// </summary>
+        /// <param name="userTaskID"></param>
+        /// <returns>Manage page</returns>
         public async Task<IActionResult> Complete(int userTaskID)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -106,6 +119,12 @@ namespace Maintain.NET.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Compiles email notification
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userTaskID"></param>
+        /// <returns></returns>
         public async Task AlertEmail(ApplicationUser user, int userTaskID)
         {
             TimeConverter timeConverter = new TimeConverter();
@@ -121,6 +140,5 @@ namespace Maintain.NET.Controllers
 
             await _emailSender.SendEmailAsync(thisUser.Email, "TASK DUE", sb.ToString());
         }
-        //------------------
     }
 }

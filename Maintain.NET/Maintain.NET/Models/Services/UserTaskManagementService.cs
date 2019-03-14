@@ -100,6 +100,11 @@ namespace Maintain.NET.Models.Services
             return _context.UserMaintenanceTasks.Any(ex => ex.ID == id);
         }
         
+        /// <summary>
+        /// Marks a task as complete and creates new due date
+        /// </summary>
+        /// <param name="userTaskID"></param>
+        /// <returns></returns>
         public async Task Complete(int userTaskID)
         {
             TimeConverter timeConverter = new TimeConverter();
@@ -129,6 +134,11 @@ namespace Maintain.NET.Models.Services
             await UpdateMaintenanceTaskInterval(userMaintenanceTask.ID);
         }
 
+        /// <summary>
+        /// Update the maintenance interval
+        /// </summary>
+        /// <param name="userTaskID"></param>
+        /// <returns></returns>
         public async Task UpdateMaintenanceTaskInterval(int userTaskID)
         {
             UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
