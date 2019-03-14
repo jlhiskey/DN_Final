@@ -9,6 +9,8 @@ using Maintain.NET.Models;
 using Maintain.NET.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
+using System.Text;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Maintain.NET.Controllers
 {
@@ -17,12 +19,15 @@ namespace Maintain.NET.Controllers
         private readonly ITaskManager _context;
         private readonly IUserTaskManager _usertask;
         private UserManager<ApplicationUser> _userManager;
+        private IEmailSender _emailSender;
+        
 
-        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _context = context;
             _usertask = usertask;
             _userManager = userManager;
+            _emailSender = emailSender;          
         }
 
         /// <summary>
@@ -71,12 +76,12 @@ namespace Maintain.NET.Controllers
         /// <summary>
         /// deletes task and returns user to task view page
         /// </summary>
-        /// <param name="id">user task</param>
+        /// <param name="userTaskID">user task</param>
         /// <returns> task view page</returns>
-        public async Task<IActionResult> DeleteUserTask(int id)
+        public async Task<IActionResult> DeleteUserTask(int userTaskID)
         {
             
-            await _usertask.DeleteUserTask(id);
+            await _usertask.DeleteUserTask(userTaskID);
 
             return RedirectToAction("Index", "Task");
         }
@@ -94,10 +99,27 @@ namespace Maintain.NET.Controllers
         //------------------
         public async Task<IActionResult> Complete(int userTaskID)
         {
-            
-            await _usertask.Complete(userTaskID);
+            var user = await _userManager.GetUserAsync(User);
 
+            await _usertask.Complete(userTaskID);
+            await AlertEmail(user, userTaskID);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task AlertEmail(ApplicationUser user, int userTaskID)
+        {
+            TimeConverter timeConverter = new TimeConverter();
+            ApplicationUser thisUser = await _userManager.FindByEmailAsync(user.Email);
+
+            var task = await _usertask.GetUserTask(user.Id, userTaskID);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{task.MaintenanceTask.Name} is due {timeConverter.UnixToDate(task.NextComplete)}!");
+
+            sb.AppendLine("GET IT DONE!");
+
+            await _emailSender.SendEmailAsync(thisUser.Email, "TASK DUE", sb.ToString());
         }
         //------------------
     }

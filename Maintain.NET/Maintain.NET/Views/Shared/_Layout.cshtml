@@ -11,18 +11,21 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
-        @if (signInManager.IsSignedIn(User))
-        {
+    
+    @if (signInManager.IsSignedIn(User))
+    {
+        <div>
             <div>
-
                 <p>
-                    @User.Claims.First(c => c.Type == "FullName").Value
+                    Hey, @User.Claims.First(c => c.Type == "FullName").Value
+                    <span>|<a href="../Account/Logout">
+    Log out </a>
+</span>
                 </p>
-
+                
             </div>
-        }
-    </div>
+        </div>
+    }
     <div>
         @RenderBody()
     </div>

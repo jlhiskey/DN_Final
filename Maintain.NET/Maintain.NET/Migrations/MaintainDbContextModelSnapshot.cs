@@ -15,7 +15,7 @@ namespace Maintain.NET.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -100,24 +100,6 @@ namespace Maintain.NET.Migrations
                     b.HasKey("MaintenanceTaskID", "UserID");
 
                     b.ToTable("UserMaintenanceTasks");
-
-                    b.HasData(
-                        new
-                        {
-                            MaintenanceTaskID = 1,
-                            UserID = "ghost@ghost.com",
-                            ID = 1,
-                            LastComplete = 0L,
-                            NextComplete = 0L
-                        },
-                        new
-                        {
-                            MaintenanceTaskID = 2,
-                            UserID = "ghost@ghost.com",
-                            ID = 2,
-                            LastComplete = 0L,
-                            NextComplete = 0L
-                        });
                 });
 
             modelBuilder.Entity("Maintain.NET.Models.UserMaintenanceHistory", b =>
