@@ -9,6 +9,8 @@ using Maintain.NET.Models;
 using Maintain.NET.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
+using System.Text;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Maintain.NET.Controllers
 {
@@ -17,12 +19,16 @@ namespace Maintain.NET.Controllers
         private readonly ITaskManager _context;
         private readonly IUserTaskManager _usertask;
         private UserManager<ApplicationUser> _userManager;
+        private IEmailSender _emailSender;
+        private EmailSender _mail;
 
-        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager)
+        public TaskController(ITaskManager context, IUserTaskManager usertask, UserManager<ApplicationUser> userManager, IEmailSender emailSender, EmailSender mail)
         {
             _context = context;
             _usertask = usertask;
             _userManager = userManager;
+            _emailSender = emailSender;
+            _mail = mail;
         }
 
         /// <summary>
@@ -85,7 +91,6 @@ namespace Maintain.NET.Controllers
             {
                 return NotFound();
             }
-            //var isd = Int32.Parse(Request.Form["task"]);
 
             await _usertask.DeleteUserTask(id);
 
@@ -97,26 +102,7 @@ namespace Maintain.NET.Controllers
          /// </summary>
          /// <param name="id"> user task id</param>
          /// <returns> true or false</returns>
-        private bool UserTaskExist(int id)
-        {
-            return _usertask.UserTaskExists(id);
-        }
-
-        //public IActionResult Index()
-        //{
-
-        //// dropdown stuff....maybe
-        //List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
-
-        //    // getting Data from database using entity framwork core
-        //    tasklist = (from task in _context.MaintenanceTask select task).ToList();
-
-        //    // inserting select Item in list
-        //    tasklist.Insert(0, new MaintenanceTask { ID = 0, "Select" });
-
-        //    ViewBag.ListofTask = tasklist;
-        //}
-        //------------------
+        
         public async Task<IActionResult> Complete(int userTaskID)
         {
             //string userID = _userManager.GetUserId(User);
@@ -124,6 +110,21 @@ namespace Maintain.NET.Controllers
             await _usertask.Complete(userTaskID);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task AlertEmail(ApplicationUser user, int userTaskID)
+        {
+           var task = await _usertask.GetUserTask(user.Id, userTaskID);
+
+            ApplicationUser thisUser = await _userManager.FindByEmailAsync(user.Email);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{task.MaintenanceTask.Name} is due {task.NextComplete}");
+            sb.AppendLine("GET IT DONE!");
+            await _mail.GetDate(task.NextComplete);
+
+            await _emailSender.SendEmailAsync(thisUser.Email, "Task Alert", sb.ToString());
         }
         //------------------
     }

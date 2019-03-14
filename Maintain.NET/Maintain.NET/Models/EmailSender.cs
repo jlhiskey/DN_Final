@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Maintain.NET.Models.Interfaces;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -14,9 +12,15 @@ namespace Maintain.NET.Models
     {
         private IConfiguration _configuration;
 
-        public EmailSender(IConfiguration configuration)
+        private readonly IUserTaskManager _usertask;
+
+        private long sendAt { get; set; }
+
+        public EmailSender(IConfiguration configuration, IUserTaskManager usertask)
         {
             _configuration = configuration;
+
+            _usertask = usertask;
         }
 
         /// <summary>
@@ -28,7 +32,6 @@ namespace Maintain.NET.Models
         /// <returns></returns>
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-   
             SendGridClient client = new SendGridClient(_configuration["Sendgrid_Api_Key"]);
 
             SendGridMessage msg = new SendGridMessage();
@@ -41,9 +44,20 @@ namespace Maintain.NET.Models
 
             msg.AddContent(MimeType.Text, htmlMessage);
 
-            msg.SendAt = 1552408500;
+            if(sendAt > 0)
+            {
+                msg.SendAt = sendAt;
+
+                await client.SendEmailAsync(msg);
+            }
+            
 
             var result = await client.SendEmailAsync(msg);
+        }
+
+        public async Task GetDate(long date)
+        {
+            sendAt = date;
         }
     }
 }

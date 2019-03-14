@@ -43,11 +43,11 @@ namespace Maintain.NET.Data
             modelBuilder.Entity<UserMaintenanceTask>().HasData(
                 new UserMaintenanceTask("ghost@ghost.com", 1)
                 {
-                    ID = 1,                    
+                    ID = 1,
                 },
                 new UserMaintenanceTask("ghost@ghost.com", 2)
                 {
-                    ID = 2,                    
+                    ID = 2,
                 }
                 );
 
@@ -55,7 +55,7 @@ namespace Maintain.NET.Data
                 new UserMaintenanceHistory()
                 {
                     ID = 1,
-                    Interval = 1000,    
+                    Interval = 1000,
                     UserID = "ghost@ghost.com",
                     UserMaintenanceTaskID = 1,
                     MaintenanceRef = 1
