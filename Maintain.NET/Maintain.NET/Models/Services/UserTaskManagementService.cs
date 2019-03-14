@@ -80,11 +80,11 @@ namespace Maintain.NET.Models.Services
         /// <summary>
         /// deletes user task
         /// </summary>
-        /// <param name="id"> task id</param>
+        /// <param name="userTaskID"> task id</param>
         /// <returns> removes deleted task</returns>
-        public async Task DeleteUserTask(int id)
+        public async Task DeleteUserTask(int userTaskID)
         {
-            var userMaintenanceTask = await _context.UserMaintenanceTasks.FindAsync(id);
+            var userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);
             _context.Remove(userMaintenanceTask);
             await _context.SaveChangesAsync();
         }

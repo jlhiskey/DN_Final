@@ -76,12 +76,12 @@ namespace Maintain.NET.Controllers
         /// <summary>
         /// deletes task and returns user to task view page
         /// </summary>
-        /// <param name="id">user task</param>
+        /// <param name="userTaskID">user task</param>
         /// <returns> task view page</returns>
-        public async Task<IActionResult> DeleteUserTask(int id)
+        public async Task<IActionResult> DeleteUserTask(int userTaskID)
         {
             
-            await _usertask.DeleteUserTask(id);
+            await _usertask.DeleteUserTask(userTaskID);
 
             return RedirectToAction("Index", "Task");
         }
