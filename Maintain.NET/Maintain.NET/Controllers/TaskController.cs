@@ -63,6 +63,11 @@ namespace Maintain.NET.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates a new user task
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View, user dashboard</returns>
         [HttpPost]
         public async Task<IActionResult> Create(int id)
         {
@@ -98,7 +103,11 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
-        //------------------
+        /// <summary>
+        /// Tells app that the task was complete
+        /// </summary>
+        /// <param name="userTaskID"></param>
+        /// <returns>Sends an email notifying when next due date is</returns>
         public async Task<IActionResult> Complete(int userTaskID)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -110,6 +119,12 @@ namespace Maintain.NET.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Compiles Due date notification email
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userTaskID"></param>
+        /// <returns></returns>
         public async Task AlertEmail(ApplicationUser user, int userTaskID)
         {
             TimeConverter timeConverter = new TimeConverter();
@@ -123,10 +138,8 @@ namespace Maintain.NET.Controllers
 
             sb.AppendLine("GET IT DONE!");
 
-            await _email.GetDate(task.NextComplete);
-
             await _emailSender.SendEmailAsync(thisUser.Email, "TASK DUE", sb.ToString());
         }
-        //------------------
+       
     }
 }

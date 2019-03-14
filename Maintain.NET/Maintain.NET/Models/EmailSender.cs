@@ -14,8 +14,6 @@ namespace Maintain.NET.Models
 
         private readonly IUserTaskManager _usertask;
 
-        private long sendAt { get; set; }
-
         public EmailSender(IConfiguration configuration, IUserTaskManager usertask)
         {
             _configuration = configuration;
@@ -43,21 +41,11 @@ namespace Maintain.NET.Models
             msg.SetSubject(subject);
 
             msg.AddContent(MimeType.Text, htmlMessage);
-
-            if(sendAt > 0)
-            {
-                msg.SendAt = sendAt;
-
-                await client.SendEmailAsync(msg);
-            }
             
 
             var result = await client.SendEmailAsync(msg);
         }
 
-        public async Task GetDate(long date)
-        {
-            sendAt = date;
-        }
+       
     }
 }
