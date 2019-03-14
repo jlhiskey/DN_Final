@@ -51,11 +51,9 @@ namespace Maintain.NET.Controllers
         public async Task<IActionResult> CreateUserTask()
         {
             var allTask = await _context.GetAllTasks();
-            //ViewData["UserTaskID"] = new SelectList(allTask, "ID", "Name");
+            
             return View(allTask);
         }
-
-        //----------------------ASYNCINN REFERENCE BELOW TO POST USER TASK-------------------------------------
 
         [HttpPost]
         public async Task<IActionResult> Create(int id)
@@ -65,12 +63,7 @@ namespace Maintain.NET.Controllers
             var user = _userManager.GetUserId(User);
 
             await _usertask.CreateUserTask(isd, user);
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(roomAmenities);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
+            
             return RedirectToAction("Index", "Task");
         }
 
@@ -81,12 +74,7 @@ namespace Maintain.NET.Controllers
         /// <returns> task view page</returns>
         public async Task<IActionResult> DeleteUserTask(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            //var isd = Int32.Parse(Request.Form["task"]);
-
+            
             await _usertask.DeleteUserTask(id);
 
             return RedirectToAction("Index", "Task");
@@ -102,25 +90,10 @@ namespace Maintain.NET.Controllers
             return _usertask.UserTaskExists(id);
         }
 
-        //public IActionResult Index()
-        //{
-
-        //// dropdown stuff....maybe
-        //List<MaintenanceTask> tasklist = new List<MaintenanceTask>();
-
-        //    // getting Data from database using entity framwork core
-        //    tasklist = (from task in _context.MaintenanceTask select task).ToList();
-
-        //    // inserting select Item in list
-        //    tasklist.Insert(0, new MaintenanceTask { ID = 0, "Select" });
-
-        //    ViewBag.ListofTask = tasklist;
-        //}
         //------------------
         public async Task<IActionResult> Complete(int userTaskID)
         {
-            //string userID = _userManager.GetUserId(User);
-            //await _usertask.GetUserTask(userID, userTaskID);
+            
             await _usertask.Complete(userTaskID);
 
             return RedirectToAction(nameof(Index));
