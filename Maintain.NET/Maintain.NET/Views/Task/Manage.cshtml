@@ -4,9 +4,10 @@
     Layout = "_Layout";
 }
 
-<a asp-action="Complete" asp-route-id="@Model.ID">Complete Task</a>
+<a asp-action="Complete" asp-route-id="@Model.ID" id="a-button">Complete Task</a>
 
 @foreach (var item in Model.UserMaintenanceHistory)
 {
     <p>Last Complete @item.TimeComplete</p>
 }
+

@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Maintain.NET.Controllers
-{
+{   
+    [Authorize]
     public class TaskController : Controller
     {
         private readonly ITaskManager _context;
