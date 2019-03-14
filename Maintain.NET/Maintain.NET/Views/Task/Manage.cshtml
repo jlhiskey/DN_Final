@@ -1,4 +1,16 @@
 ﻿@model Maintain.NET.Models.UserMaintenanceTask
+@using Maintain.NET.Data
 
+@inject MaintainDbContext _context
+
+@{ 
+    var history = _context.UserMaintenanceHistories.OrderByDescending(m => m.UserMaintenanceTaskID == Model.ID).Take(10);
+    
+}
 
 <a asp-action="Complete" asp-route-id="@Model.ID">Complete Task</a>
+
+@foreach(var item in history)
+{
+    <p>Last Complete @item.TimeComplete</p>
+}
