@@ -9,6 +9,8 @@
 
 }
 
+<div class="text-container">
+    
 @foreach (var usertask in Model)
 
 {
@@ -17,6 +19,8 @@
     <a asp-action="Manage" asp-route-id="@usertask.ID">Complete Task</a>
 
 }
+
+</div>
 
 <p>
     <a asp-action="CreateUserTask">Add New Task</a>

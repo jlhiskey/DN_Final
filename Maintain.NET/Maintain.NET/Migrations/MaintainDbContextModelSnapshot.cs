@@ -15,7 +15,7 @@ namespace Maintain.NET.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -73,35 +73,16 @@ namespace Maintain.NET.Migrations
 
                     b.Property<int>("UserMaintenanceTaskID");
 
-                    b.Property<int?>("UserMaintenanceTaskMaintenanceTaskID");
+                    b.Property<int>("UserMaintenanceTaskMaintenanceTaskID");
 
-                    b.Property<string>("UserMaintenanceTaskUserID");
+                    b.Property<string>("UserMaintenanceTaskUserID")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
                     b.HasIndex("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID");
 
                     b.ToTable("UserMaintenanceHistories");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Interval = 1000L,
-                            MaintenanceRef = 1,
-                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserID = "ghost@ghost.com",
-                            UserMaintenanceTaskID = 1
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Interval = 1000L,
-                            MaintenanceRef = 2,
-                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserID = "ghost@ghost.com",
-                            UserMaintenanceTaskID = 2
-                        });
                 });
 
             modelBuilder.Entity("Maintain.NET.Models.UserMaintenanceTask", b =>
@@ -143,7 +124,8 @@ namespace Maintain.NET.Migrations
                 {
                     b.HasOne("Maintain.NET.Models.UserMaintenanceTask", "UserMaintenanceTask")
                         .WithMany("UserMaintenanceHistory")
-                        .HasForeignKey("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID");
+                        .HasForeignKey("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Maintain.NET.Models.UserMaintenanceTask", b =>
