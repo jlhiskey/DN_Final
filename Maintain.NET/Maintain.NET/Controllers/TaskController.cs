@@ -50,21 +50,20 @@ namespace Maintain.NET.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateUserTask()
         {
-            var allTasks = await _context.GetAllTasks();
-            ViewData["MaintnenceTaskID"] = new SelectList(allTasks, "ID", "Name");
-
-
-            return View();
+            var allTask = await _context.GetAllTasks();
+            
+            return View(allTask);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(int id)
         {
-            //var isd = Int32.Parse(Request.Form["task"]);
+            var isd = Int32.Parse(Request.Form["task"]);
 
             var user = _userManager.GetUserId(User);
 
-            await _usertask.CreateUserTask(id, user);
+            await _usertask.CreateUserTask(isd, user);
             
             return RedirectToAction("Index", "Task");
         }

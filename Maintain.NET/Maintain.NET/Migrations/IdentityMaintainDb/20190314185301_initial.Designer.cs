@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Maintain.NET.Migrations.IdentityMaintainDb
 {
     [DbContext(typeof(IdentityMaintainDbContext))]
-    [Migration("20190313230616_initial")]
+    [Migration("20190314185301_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
