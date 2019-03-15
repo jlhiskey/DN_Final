@@ -4,10 +4,27 @@
     ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
+@inject SignInManager<ApplicationUser> signInManager
+<header id="main-header">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <div id="greeting">
+            <div>
+                <p>
+                    <i>Hey, @User.Claims.First(c => c.Type == "FullName").Value </i>
+                    <a href="../Account/Logout" id="logout">Log out </a>
+                </p>
 
-<h3>Add New Task</h3>
+            </div>
+        </div>
+    }
 
-<div class="row">
+    <h3 id="manage-title">Add New Task</h3>
+</header>
+
+<div id="add-class-container">
+
+<div id="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -26,8 +43,8 @@
             </div>
         </form>
     </div>
-</div>
-
 <div id="back-btn">
     <a asp-action="Index" id="a-button">Back</a>
+</div>
+</div>
 </div>
