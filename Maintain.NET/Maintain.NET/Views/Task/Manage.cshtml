@@ -4,23 +4,34 @@
     Layout = "_Layout";
 }
 @inject SignInManager<ApplicationUser> signInManager
-@if (signInManager.IsSignedIn(User))
-{
-    <div>
-        <div>
-            <p>
-                Hey, @User.Claims.First(c => c.Type == "FullName").Value
-                <span><a href="../Account/Logout" id="logout">Log out </a> </span>
-            </p>
+@inject SignInManager<ApplicationUser> signInManager
+<header id="main-header">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <div id="greeting">
+            <div>
+                <p>
+                    <i>Hey, @User.Claims.First(c => c.Type == "FullName").Value </i>
+                    <a href="../Account/Logout" id="logout">Log out </a>
+                </p>
 
+            </div>
         </div>
-    </div>
-}
+    }
 
-<a asp-action="Complete" asp-route-id="@Model.ID" id="a-button">Complete Task</a>
+    <h3 id="manage-title">Task History</h3>
+</header>
+<div id="complete-btn">
+
+
+<a asp-action="Complete" asp-route-id="@Model.ID" id="add-button">Complete Task</a>
+</div>
+
+<div class="text-container-history">
 
 @foreach (var item in Model.UserMaintenanceHistory)
 {
     <p>Last Complete @item.TimeComplete</p>
 }
+</div>
 

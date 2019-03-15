@@ -99,7 +99,9 @@ header {
 #manage-title {
     margin-top: -3vw;
 }
+#row{
 
+}
 button {
     font-family: 'Baloo Thambi', cursive;
     font-family: 'NTR', sans-serif;
@@ -193,6 +195,13 @@ button:hover {
 #back-btn {
     margin-top: 1vh;
 }
+#complete-btn {
+    margin-top: 9vw;
+}
+}
+#complete-btn:hover {
+    box-shadow: 0 15px 20px 0 rgba(0,0,0,0.24), 0 20px 55px 0 rgba(0,0,0,0.19);
+}
 #logout{
     text-decoration: none;
     position: absolute;
@@ -230,6 +239,20 @@ button:hover {
     padding-bottom: 1.5vw;
     margin-top: 7vw;
 }
+.text-container-history {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: white;
+    width: 25%;
+    margin-bottom: 3vh;
+    background: rgb(255, 255, 255, 0.7);
+    margin-top: 2Svw;
+    padding-bottom: 1.5vw;
+    margin-top: 3vw;
+}
 
 img {
     opacity: 0.65;
@@ -244,6 +267,9 @@ img {
     position: absolute;
     top: 7vw;
     left: 2.5vw;
+}
+#row {
+    height: 8vw;
 }
 .column {
     float: left;
@@ -281,6 +307,19 @@ img {
 #create-btn {
     margin-top: 1vw;
 }
+#add-class-container {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: white;
+    width: 25%;
+    margin-bottom: 3vh;
+    background: rgb(255, 255, 255, 0.7);
+    margin-top: 14vw;
+}
+
 #register {
     margin-top: 10vw;
     border: 1px solid black;
@@ -304,7 +343,9 @@ img {
     margin-top: .3vw;
 }
 
-
+.form-group {
+    margin-top: 1vw;
+}
 
 
 footer {
