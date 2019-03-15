@@ -19,9 +19,27 @@ h1 {
     font-family: 'Russo One', sans-serif;
     font-family: 'Changa One', cursive;
     font-family: 'Josefin Sans', sans-serif;*/
-
+    font-size: 2vw;
 }
 h3 {
+    /*font-family: 'Baloo Thambi', cursive;
+    font-family: 'NTR', sans-serif;*/
+    font-family: 'Secular One', sans-serif;
+    /*font-family: 'K2D', sans-serif;
+    font-family: 'Inder', sans-serif;
+    font-family: 'Tauri', sans-serif;
+    font-family: 'Contrail One', cursive;
+    font-family: 'Baloo', cursive;
+    font-family: 'Alfa Slab One', cursive;
+    font-family: 'Righteous', cursive;
+    font-family: 'Lilita One', cursive;
+    font-family: 'Fredoka One', cursive;
+    font-family: 'Russo One', sans-serif;
+    font-family: 'Changa One', cursive;
+    font-family: 'Josefin Sans', sans-serif;*/
+    font-size: 2vw;
+}
+p {
     font-family: 'Baloo Thambi', cursive;
     font-family: 'NTR', sans-serif;
     font-family: 'Secular One', sans-serif;
@@ -37,27 +55,38 @@ h3 {
     font-family: 'Russo One', sans-serif;
     font-family: 'Changa One', cursive;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 2vw;
-}
-p {
-    /*font-family: 'Baloo Thambi', cursive;
-    font-family: 'NTR', sans-serif;
-    font-family: 'Secular One', sans-serif;
-    font-family: 'K2D', sans-serif;
-    font-family: 'Inder', sans-serif;*/
-    font-family: 'Tauri', sans-serif;
-    /*font-family: 'Contrail One', cursive;
-    font-family: 'Baloo', cursive;
-    font-family: 'Alfa Slab One', cursive;
-    font-family: 'Righteous', cursive;
-    font-family: 'Lilita One', cursive;
-    font-family: 'Fredoka One', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Changa One', cursive;
-    font-family: 'Josefin Sans', sans-serif;*/
-    font-size: 1.2vw;
+    font-size: 1.1vw;
 }
 
+#main-header {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 0;
+    background: rgb(255, 255, 255, 0.7);
+    position: fixed;
+    left: 0;
+    height: 4vw;
+    top: 0vw;
+}
+header {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 0;
+    background: rgb(255, 255, 255, 0.7);
+    position: fixed;
+    left: 0;
+  
+    height: 3vw;
+}
+#login-title {
+    margin-top: 0.5vw;
+}
 button {
     font-family: 'Baloo Thambi', cursive;
     font-family: 'NTR', sans-serif;
@@ -118,8 +147,44 @@ button:hover {
 #add-btn {
     margin-top: 1vh;
 }
+#add-button {
+    font-family: 'Baloo Thambi', cursive;
+    font-family: 'NTR', sans-serif;
+    font-family: 'Secular One', sans-serif;
+    font-family: 'K2D', sans-serif;
+    font-family: 'Inder', sans-serif;
+    font-family: 'Tauri', sans-serif;
+    font-family: 'Contrail One', cursive;
+    font-family: 'Baloo', cursive;
+    font-family: 'Alfa Slab One', cursive;
+    font-family: 'Righteous', cursive;
+    font-family: 'Lilita One', cursive;
+    font-family: 'Fredoka One', cursive;
+    font-family: 'Russo One', sans-serif;
+    font-family: 'Changa One', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    background-color: mediumpurple;
+    padding: .5vw;
+    width: 6vw;
+    border: .12vw solid mintcream;
+    border-radius: .3vw;
+    font-size: .8vw;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    text-decoration: none;
+}
+
+ #add-button:hover {
+     box-shadow: 0 15px 20px 0 rgba(0,0,0,0.24), 0 20px 55px 0 rgba(0,0,0,0.19);
+ }
 #back-btn {
     margin-top: 1vh;
+}
+#logout{
+    text-decoration: none;
+    position: absolute;
+    right: 2vw;
+
 }
 .text-container {
     margin-left: auto;
@@ -131,7 +196,7 @@ button:hover {
     width: 25%;
     margin-bottom: 3vh;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 7vw;
+    margin-top: 14vw;
 }
 .text-container-manage {
     margin-left: auto;
@@ -143,7 +208,7 @@ button:hover {
     width: 25%;
     margin-bottom: 3vh;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 7vw;
+    margin-top: 2Svw;
     padding-bottom: 1.5vw;
 }
 
@@ -172,13 +237,13 @@ img {
     text-align: right;
     padding-top: .2vw;
     margin-right: 4vw;
-    /*font-family: 'Baloo Thambi', cursive;
+    font-family: 'Baloo Thambi', cursive;
     font-family: 'NTR', sans-serif;
     font-family: 'Secular One', sans-serif;
     font-family: 'K2D', sans-serif;
-    font-family: 'Inder', sans-serif;*/
+    font-family: 'Inder', sans-serif;
     font-family: 'Tauri', sans-serif;
- /*font-family: 'Baloo Thambi', cursive;
+ font-family: 'Baloo Thambi', cursive;
     font-family: 'NTR', sans-serif;
     font-family: 'Secular One', sans-serif;
     font-family: 'K2D', sans-serif;
@@ -192,7 +257,7 @@ img {
     font-family: 'Fredoka One', cursive;
     font-family: 'Russo One', sans-serif;
     font-family: 'Changa One', cursive;
-    font-family: 'Josefin Sans', sans-serif;*/
+    font-family: 'Josefin Sans', sans-serif;
 }
 #create-btn {
     margin-top: 1vw;
@@ -203,7 +268,7 @@ img {
     width: 23vw;
     margin-left: 38vw;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 7vw;
+    margin-top: 13vw;
 }
 #login {
     margin-top: 10vw;
@@ -211,9 +276,9 @@ img {
     width: 23vw;
     margin-left: 38vw;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 7vw;
+    margin-top: 16vw;
     text-align: right;
-    font-family: 'Tauri', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
 }
 #login-btn {
     margin-right: 10vw;
@@ -275,4 +340,18 @@ img {
         .sidenav a {
             font-size: 18px;
         }
+}
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 0;
+    background: rgb(255, 255, 255, 0.7);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 3vw;
 }

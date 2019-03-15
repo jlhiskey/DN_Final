@@ -2,7 +2,21 @@
 @using Maintain.NET.Models.Interfaces
 @using Maintain.NET.Models
 @inject ITaskManager TaskManagementService
-<h1>Manage Your Tasks</h1>
+@inject SignInManager<ApplicationUser> signInManager
+@if (signInManager.IsSignedIn(User))
+{
+    <div>
+        <div>
+            <p>
+                <i>
+                    Hey, @User.Claims.First(c => c.Type == "FullName").Value  </i>
+                    <a href="../Account/Logout" id="logout">Log out </a> 
+</p>
+
+        </div>
+    </div>
+}
+<h3>Manage Your Tasks</h3>
 @{
     var tasks = await TaskManagementService.GetAllTasks();
 
@@ -13,21 +27,21 @@
 }
 
 <div class="text-container-manage">
-    
-@foreach (var usertask in Model)
 
-{
-    <p>Due Date: @timeConverter.UnixToDate(usertask.NextComplete)</p>
-    <p>@usertask.MaintenanceTask.Name</p>
-    <a asp-action="DeleteUserTask" asp-route-id="@usertask.ID" id="a-button">Delete</a>
-    <a asp-action="Manage" asp-route-id="@usertask.ID" id="a-button">Complete Task</a>
+    @foreach (var usertask in Model)
 
-}
+    {
+        <p>Due Date: @timeConverter.UnixToDate(usertask.NextComplete)</p>
+        <p><strong>@usertask.MaintenanceTask.Name</strong></p>
+        <a asp-action="DeleteUserTask" asp-route-id="@usertask.ID" id="a-button">Delete</a>
+        <a asp-action="Manage" asp-route-id="@usertask.ID" id="a-button">Complete Task</a>
+
+    }
 
 </div>
 
 <p>
-    <a asp-action="CreateUserTask" id="a-button">Add New Task</a>
+    <a asp-action="CreateUserTask" id="add-button">Add New Task</a>
 </p>
 
 
