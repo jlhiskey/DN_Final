@@ -6,8 +6,10 @@
 
 <a asp-action="Complete" asp-route-id="@Model.ID" id="a-button">Complete Task</a>
 
+<h3>Completion History</h3>
+
 @foreach (var item in Model.UserMaintenanceHistory)
 {
-    <p>Last Complete @item.TimeComplete</p>
+    <p>Completed on @item.TimeComplete</p>
 }
 
