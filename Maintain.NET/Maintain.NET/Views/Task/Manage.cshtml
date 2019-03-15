@@ -2,17 +2,36 @@
 @using Maintain.NET.Data
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Complete Task";
 }
+@inject SignInManager<ApplicationUser> signInManager
+@inject SignInManager<ApplicationUser> signInManager
+<header id="main-header">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <div id="greeting">
+            <div>
+                <p>
+                    <i>Hey, @User.Claims.First(c => c.Type == "FullName").Value </i>
+                    <a href="../Account/Logout" id="logout">Log out </a>
+                </p>
 
-<h1>Complete Task</h1>
+            </div>
+        </div>
+    }
 
-<a asp-action="Complete" asp-route-id="@Model.ID" id="a-button">Complete Task</a>
+    <h3 id="manage-title">Task History</h3>
+</header>
+<div id="complete-btn">
 
-<h1>Completion History</h1>
+
+<a asp-action="Complete" asp-route-id="@Model.ID" id="add-button">Complete Task</a>
+</div>
+
+<div class="text-container-history">
 
 @foreach (var item in Model.UserMaintenanceHistory)
 {
-    <p>Completed on @item.TimeComplete</p>
+    <p>Last Complete @item.TimeComplete</p>
 }
+</div>
 
