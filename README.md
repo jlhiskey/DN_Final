@@ -1,15 +1,26 @@
 # Maintain.NET
 
-## Overview
-
-### Deployed Site
+## Deployed Site
 https://maintainnet.azurewebsites.net/
+## Overview
+This app was designed for keeping up with routine maintenance task. This app will aid in keeping up with regular maintenance or task associated by sending reminder emails to the user about the task.
+The app determines at what intervals the task will need to be completed through user input in addition to the input from other users doing the same task. Through machine learning, this interval is determined. 
+The more submissions of completed, the more accurate the information becomes. 
 
-## Example Usage
+The languages utilized in building this web app consit of HTML, CSS, and C#. 
 
-## User Stories
+## Tools Used
+- ML net
+- Sendgrid
+- ASP.NET Core MVC
+- SQL Database
+- Entity Framework Core
+- Microsoft Identity
+- Azure DevOps
+- Visual Studio
 
-### User Story 1 - Landing Page
+## Data Flow
+
 
 #### Features
 - Site Introduction Statement
