@@ -23,16 +23,30 @@ namespace Maintain.NET.Data
 
             //TODO: Add Seeds here
             modelBuilder.Entity<MaintenanceTask>().HasData(
-                new MaintenanceTask("Fish Tank")
+                new MaintenanceTask("Clean Fish Tank")
                 {
                     ID = 1,
                     RecommendedInterval = 1000,
-                    MaximumInterval = 10000,
+                    MaximumInterval = 15000,
                     MinimumInterval = 2
                 },
                 new MaintenanceTask("Oil Change")
                 {
                     ID = 2,
+                    RecommendedInterval = 1000,
+                    MaximumInterval = 100000,
+                    MinimumInterval = 2
+                },
+                new MaintenanceTask("Water Crop")
+                {
+                    ID = 3,
+                    RecommendedInterval = 1000,
+                    MaximumInterval = 10000,
+                    MinimumInterval = 2
+                },
+                new MaintenanceTask("Harvest Crop")
+                {
+                    ID = 4,
                     RecommendedInterval = 1000,
                     MaximumInterval = 10000,
                     MinimumInterval = 2
@@ -43,10 +57,26 @@ namespace Maintain.NET.Data
                 new UserMaintenanceTask("ghost@ghost.com", 1)
                 {
                     ID = 1,
+                    UserID = "ghost@ghost.com",
+                    MaintenanceTaskID = 1,
                 },
-                new UserMaintenanceTask("ghost@ghost.com", 2)
+                new UserMaintenanceTask("ghost@ghost.com", 1)
                 {
                     ID = 2,
+                    UserID = "ghost@ghost.com",
+                    MaintenanceTaskID = 2,
+                },
+                new UserMaintenanceTask("ghost@ghost.com", 1)
+                {
+                    ID = 3,
+                    UserID = "ghost@ghost.com",
+                    MaintenanceTaskID = 3,
+                },
+                new UserMaintenanceTask("ghost@ghost.com", 1)
+                {
+                    ID = 4,
+                    UserID = "ghost@ghost.com",
+                    MaintenanceTaskID = 4,
                 }
                 );
 
@@ -66,6 +96,22 @@ namespace Maintain.NET.Data
                     UserID = "ghost@ghost.com",
                     UserMaintenanceTaskID = 2,
                     MaintenanceRef = 2
+                },
+                new UserMaintenanceHistory()
+                {
+                    ID = 3,
+                    Interval = 1000,
+                    UserID = "ghost@ghost.com",
+                    UserMaintenanceTaskID = 3,
+                    MaintenanceRef = 3
+                },
+                new UserMaintenanceHistory()
+                {
+                    ID = 4,
+                    Interval = 1000,
+                    UserID = "ghost@ghost.com",
+                    UserMaintenanceTaskID = 4,
+                    MaintenanceRef = 4
                 }
                 );
 

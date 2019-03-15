@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Maintain.NET.Migrations
 {
     [DbContext(typeof(MaintainDbContext))]
-    [Migration("20190314195538_initial")]
+    [Migration("20190315004449_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -44,17 +44,33 @@ namespace Maintain.NET.Migrations
                         new
                         {
                             ID = 1,
-                            MaximumInterval = 10000L,
+                            MaximumInterval = 15000L,
                             MinimumInterval = 2L,
-                            Name = "Fish Tank",
+                            Name = "Clean Fish Tank",
                             RecommendedInterval = 1000L
                         },
                         new
                         {
                             ID = 2,
-                            MaximumInterval = 10000L,
+                            MaximumInterval = 100000L,
                             MinimumInterval = 2L,
                             Name = "Oil Change",
+                            RecommendedInterval = 1000L
+                        },
+                        new
+                        {
+                            ID = 3,
+                            MaximumInterval = 10000L,
+                            MinimumInterval = 2L,
+                            Name = "Water Crop",
+                            RecommendedInterval = 1000L
+                        },
+                        new
+                        {
+                            ID = 4,
+                            MaximumInterval = 10000L,
+                            MinimumInterval = 2L,
+                            Name = "Harvest Crop",
                             RecommendedInterval = 1000L
                         });
                 });
@@ -75,16 +91,53 @@ namespace Maintain.NET.Migrations
 
                     b.Property<int>("UserMaintenanceTaskID");
 
-                    b.Property<int>("UserMaintenanceTaskMaintenanceTaskID");
+                    b.Property<int?>("UserMaintenanceTaskMaintenanceTaskID");
 
-                    b.Property<string>("UserMaintenanceTaskUserID")
-                        .IsRequired();
+                    b.Property<string>("UserMaintenanceTaskUserID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID");
 
                     b.ToTable("UserMaintenanceHistories");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Interval = 1000L,
+                            MaintenanceRef = 1,
+                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = "ghost@ghost.com",
+                            UserMaintenanceTaskID = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Interval = 1000L,
+                            MaintenanceRef = 2,
+                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = "ghost@ghost.com",
+                            UserMaintenanceTaskID = 2
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Interval = 1000L,
+                            MaintenanceRef = 3,
+                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = "ghost@ghost.com",
+                            UserMaintenanceTaskID = 3
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Interval = 1000L,
+                            MaintenanceRef = 4,
+                            TimeComplete = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserID = "ghost@ghost.com",
+                            UserMaintenanceTaskID = 4
+                        });
                 });
 
             modelBuilder.Entity("Maintain.NET.Models.UserMaintenanceTask", b =>
@@ -119,6 +172,22 @@ namespace Maintain.NET.Migrations
                             ID = 2,
                             LastComplete = 0L,
                             NextComplete = 0L
+                        },
+                        new
+                        {
+                            MaintenanceTaskID = 3,
+                            UserID = "ghost@ghost.com",
+                            ID = 3,
+                            LastComplete = 0L,
+                            NextComplete = 0L
+                        },
+                        new
+                        {
+                            MaintenanceTaskID = 4,
+                            UserID = "ghost@ghost.com",
+                            ID = 4,
+                            LastComplete = 0L,
+                            NextComplete = 0L
                         });
                 });
 
@@ -126,8 +195,7 @@ namespace Maintain.NET.Migrations
                 {
                     b.HasOne("Maintain.NET.Models.UserMaintenanceTask", "UserMaintenanceTask")
                         .WithMany("UserMaintenanceHistory")
-                        .HasForeignKey("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserMaintenanceTaskMaintenanceTaskID", "UserMaintenanceTaskUserID");
                 });
 
             modelBuilder.Entity("Maintain.NET.Models.UserMaintenanceTask", b =>
