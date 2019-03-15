@@ -20,7 +20,22 @@ The languages utilized in building this web app consit of HTML, CSS, and C#.
 - Visual Studio
 
 ## Data Flow
+- When a user lands on our site, they are introduced to the maintenance task tracking service and given the option to either register or login.  
+- On the registration page, the user must input their first name, last name, email, and password.  
+- This information will be saved into a user identity database.  
+- If an account has already been created, the user can log in using their email and password.  
+- Upon login, the user will land on a dashboard which shows their personal tasks and allows them to select a new task to add to the list.  
+- Users have the option to click an individual task that redirects to a completion page which outlines a history of completed tasks.  
+- This completion page also allows a user to mark a task as complete which sends data to the external database that collects aggregate data from all users.  
 
+## Getting Started
+
+- Clone the repository in to your local  machine.
+- Add migration for MaintainDbContext
+- Add migration to IdentityMaintainDbContext
+- Update database for MaintainDbContext
+- Update database for IdentityMaintainDbContext
+- Run the application
 
 #### Features
 - Site Introduction Statement
