@@ -1,5 +1,6 @@
 ﻿using Maintain.NET.Models;
 using Maintain.NET.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -73,7 +74,7 @@ namespace Maintain.NET.Controllers
 
                     await RegistrationEmail(user);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Task");
                 }
                 
 
@@ -96,6 +97,7 @@ namespace Maintain.NET.Controllers
             sb.AppendLine($"Hey {thisUser.FirstName}, thanks for registering with Maintain.NET!");
             sb.AppendLine("We hope you have a good day!");
 
+          
             await _emailSender.SendEmailAsync(thisUser.Email, "Registration Confirmation", sb.ToString());
         }
         /// <summary>
@@ -119,13 +121,24 @@ namespace Maintain.NET.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Task");
                 }
             }
 
             ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
 
             return View(lvm);
+        }
+
+        /// <summary>
+        /// Logs user out
+        /// </summary>
+        /// <returns>view</returns>
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

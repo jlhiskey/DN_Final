@@ -20,6 +20,11 @@ namespace Maintain.NET.Models
         public int UserMaintenanceTaskID { get; set; }
 
         /// <summary>
+        /// User Maintenance Task ID
+        /// </summary>
+        public int MaintenanceRef { get; set; }
+
+        /// <summary>
         /// Records when the task was completed
         /// </summary>
         public DateTime TimeComplete { get; set; }
@@ -28,8 +33,6 @@ namespace Maintain.NET.Models
         public long Interval { get; set; }
 
         // Navigation Properties
-
-
 
         public UserMaintenanceTask UserMaintenanceTask { get; set; }
     }
