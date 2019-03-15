@@ -223,7 +223,7 @@ button:hover {
     width: 25%;
     margin-bottom: 3vh;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 14vw;
+    margin-top: 18vw;
 }
 .text-container-manage {
     margin-left: auto;
@@ -265,7 +265,7 @@ img {
     margin: auto;
     z-index: -1;
     position: absolute;
-    top: 7vw;
+    top: 11.5vw;
     left: 2.5vw;
 }
 #row {
@@ -326,7 +326,7 @@ img {
     width: 23vw;
     margin-left: 38vw;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 13vw;
+    margin-top: 18vw;
 }
 #login {
     margin-top: 10vw;
@@ -334,7 +334,7 @@ img {
     width: 23vw;
     margin-left: 38vw;
     background: rgb(255, 255, 255, 0.7);
-    margin-top: 16vw;
+    margin-top: 20vw;
     text-align: right;
     font-family: 'Josefin Sans', sans-serif;
 }
