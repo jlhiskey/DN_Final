@@ -18,16 +18,17 @@ namespace Maintain.NET.Models.Services
         }
 
         /// <summary>
-        /// allows user to select a task
+        /// allows user to create a task
         /// </summary>
-        /// <param name="userMaintenanceTask"> </param>
-        /// <returns></returns>
-        public async Task CreateUserTask(int id, string userId)
+        /// <param name="maintenanceTaskID">Selected Maintenance Task</param>
+        /// <param name="userId">Current User</param>
+        /// <returns>Adds new User Task to Database</returns>
+        public async Task CreateUserTask(int maintenanceTaskID, string userId)
         {
             TimeConverter timeConverter = new TimeConverter();
 
-            MaintenanceTask task = _context.MaintenanceTasks.FirstOrDefault(m => m.ID == id);
-            UserMaintenanceTask uMTask = new UserMaintenanceTask(userId, id);
+            MaintenanceTask task = _context.MaintenanceTasks.FirstOrDefault(m => m.ID == maintenanceTaskID);
+            UserMaintenanceTask uMTask = new UserMaintenanceTask(userId, maintenanceTaskID);
             uMTask.LastComplete = timeConverter.DateToUnix(DateTime.Now);
             uMTask.MaintenanceTask = task;
             uMTask.NextComplete = uMTask.LastComplete + task.RecommendedInterval;
@@ -37,11 +38,12 @@ namespace Maintain.NET.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        /// <summary>
-        /// gets user task
-        /// </summary>
-        /// <param name="id"> int id</param>
-        /// <returns>  returns task ID</returns>
+       /// <summary>
+       /// Retreives a specific UserMaintenanceTask from database using user id and user maintenance task ID
+       /// </summary>
+       /// <param name="userId"></param>
+       /// <param name="userMaintenanceTaskID"></param>
+       /// <returns>Selected UserMaintenanceTask</returns>
         public async Task<UserMaintenanceTask> GetUserTask(string userId, int userMaintenanceTaskID)
         {
             UserMaintenanceTask task = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == userMaintenanceTaskID);
@@ -53,7 +55,7 @@ namespace Maintain.NET.Models.Services
         /// <summary>
         /// selects all user task
         /// </summary>
-        /// <param name="id"> task id</param>
+        /// <param name="userId"> user id</param>
         /// <returns> returns all task ID</returns>
         public async Task<IEnumerable<UserMaintenanceTask>> GetAllUserTasks(string userId)
         {
@@ -65,7 +67,7 @@ namespace Maintain.NET.Models.Services
             return tasks;
         }
 
-        //update/edit
+       
         /// <summary>
         /// updates user task
         /// </summary>
@@ -93,17 +95,17 @@ namespace Maintain.NET.Models.Services
         /// <summary>
         /// checks to see if task exist
         /// </summary>
-        /// <param name="id"> task id</param>
+        /// <param name="userMaintenanceTaskID"> task id</param>
         /// <returns> returns a response if a task exist</returns>
-        public bool UserTaskExists(int id)
+        public bool UserTaskExists(int userMaintenanceTaskID)
         {
-            return _context.UserMaintenanceTasks.Any(ex => ex.ID == id);
+            return _context.UserMaintenanceTasks.Any(ex => ex.ID == userMaintenanceTaskID);
         }
-        
+
         /// <summary>
-        /// Marks a task as complete and creates new due date
+        /// Updates a UserMaintenenceTasks LastComplete property and creates a new userMaintenanceHistory item with interval data and then calls UpdateMaintenanceTaskInterval 
         /// </summary>
-        /// <param name="userTaskID"></param>
+        /// <param name="userTaskID">User Task ID</param>
         /// <returns></returns>
         public async Task Complete(int userTaskID)
         {
@@ -114,9 +116,7 @@ namespace Maintain.NET.Models.Services
             userMaintenanceTask.LastComplete = timeConverter.DateToUnix(DateTime.Now);
 
             _context.Update(userMaintenanceTask);
-
-            //await _context.SaveChangesAsync();
-
+            
             long interval = timeConverter.CalculateInterval(lastComplete);
             
             MaintenanceTask maintenanceTask = await _context.MaintenanceTasks.FirstOrDefaultAsync(mt => mt.ID == userMaintenanceTask.MaintenanceTaskID);
@@ -135,10 +135,10 @@ namespace Maintain.NET.Models.Services
         }
 
         /// <summary>
-        /// Update the maintenance interval
+        /// Collects all UserMaintenanceHistories that match the maintenaceID of the userTask then runs all of the received interval data through an algorithm that will determine a new recommended interval for the master MaintenanceTask that is related to the UserMaintenanceTask, it then updates the userTasks NextComplete value.
         /// </summary>
-        /// <param name="userTaskID"></param>
-        /// <returns></returns>
+        /// <param name="userTaskID">User Task ID</param>
+        /// <returns>Updates UserTask.NextComplete</returns>
         public async Task UpdateMaintenanceTaskInterval(int userTaskID)
         {
             UserMaintenanceTask userMaintenanceTask = await _context.UserMaintenanceTasks.FirstOrDefaultAsync(umt => umt.ID == userTaskID);

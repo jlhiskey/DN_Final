@@ -27,9 +27,12 @@ namespace Maintain.NET.Models
     public class MachineLearning
     {
         /// <summary>
-        /// Builds Trains and Evaluates UserMaintnenaceHistory and returns a long that represents the recommended interval of MaintenanceTask.
+        ///Builds Trains and Evaluates UserMaintnenaceHistory and returns a long that represents the recommended interval of MaintenanceTask.
         /// </summary>
-        /// <returns>long representing recommended interval of MaintenanceTask</returns>
+        /// <param name="incomingData">List of UserMaintenanceHistory</param>
+        /// <param name="lower">Sets upper bound for model</param>
+        /// <param name="upper">Sets lower bound for model</param>
+        /// <returns>New recommended interval for MaintenanceTask</returns>
         public static long Run(IEnumerable<UserMaintenanceHistory> incomingData, long lower, long upper)
         {
             long recommendedInterval = 0;
@@ -43,6 +46,11 @@ namespace Maintain.NET.Models
             return recommendedInterval;
         }
 
+        /// <summary>
+        /// Converts incoming List of UserMaintenanceHistory into a datatype that can be used by the ML.NET model builder.
+        /// </summary>
+        /// <param name="incomingData">List of UserMaintenanceHistory</param>
+        /// <returns>Returns a enumerable list of data that can be used by ML.NET model builder</returns>
         public static IntervalData[] ParseData(IEnumerable<UserMaintenanceHistory> incomingData)
         {
             IntervalData[] dataArray = new IntervalData[incomingData.Count()];
@@ -102,6 +110,15 @@ namespace Maintain.NET.Models
             return trainedModel;
         }
 
+        /// <summary>
+        /// This is where a prediction would have been made but instead it is just running a average that throws out upper and lower bounds before calculating the average.
+        /// </summary>
+        /// <param name="mlContext">Loads the input machine learning database</param>
+        /// <param name="model">Built machine learning model</param>
+        /// <param name="incomingData">Loads the input UserMaintenanceHistory list</param>
+        /// <param name="lower">Sets the lower bound of UserMaintenanceHistory.Interval value that will be used in calculation.</param>
+        /// <param name="upper">Sets the upper bound of UserMaintenanceHistory.Interval value that will be used in calculation.</param>
+        /// <returns>Returns new calculated RecommendedInterval that will be used by user maintenance task</returns>
         private static long Evaluate(MLContext mlContext, ITransformer model, IEnumerable<UserMaintenanceHistory> incomingData, long lower, long upper)
         {
             long recommendedInterval = 0;
@@ -123,7 +140,6 @@ namespace Maintain.NET.Models
                 recommendedInterval = recommendedInterval / savedData;
             }
             
-
             var predictionFunction = model.CreatePredictionEngine<IntervalData, IntervalPrediction>(mlContext);
 
             IntervalData interval = new IntervalData()

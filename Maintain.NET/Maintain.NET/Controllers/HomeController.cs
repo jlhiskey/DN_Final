@@ -35,14 +35,5 @@ namespace Maintain.NET.Controllers
         {
             return RedirectToAction("Login", "Account");
         }
-
-        public IActionResult Test()
-        {
-            
-
-
-
-            return View();
-        }
     }
 }

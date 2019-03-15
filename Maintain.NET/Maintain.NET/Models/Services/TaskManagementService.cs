@@ -37,7 +37,7 @@ namespace Maintain.NET.Models.Services
         /// gets task selected by user
         /// </summary>
         /// <param name="id">task id</param>
-        /// <returns> returns ask ID</returns>
+        /// <returns> returns task ID</returns>
         public async Task<MaintenanceTask> GetTask(int id)
         {
             return await _context.MaintenanceTasks.FirstOrDefaultAsync(tsk => tsk.ID == id);

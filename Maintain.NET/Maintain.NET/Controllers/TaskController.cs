@@ -97,20 +97,20 @@ namespace Maintain.NET.Controllers
             return RedirectToAction("Index", "Task");
         }
 
-         /// <summary>
-         /// determines if a user task exist
-         /// </summary>
-         /// <param name="id"> user task id</param>
-         /// <returns> true or false</returns>
-        private bool UserTaskExist(int id)
+        /// <summary>
+        /// determines if a user task exist
+        /// </summary>
+        /// <param name="userTaskID">user task id</param>
+        /// <returns> true or false</returns>
+        private bool UserTaskExist(int userTaskID)
         {
-            return _usertask.UserTaskExists(id);
+            return _usertask.UserTaskExists(userTaskID);
         }
 
         /// <summary>
-        /// Marks a taks complete
+        /// Marks a task complete
         /// </summary>
-        /// <param name="userTaskID"></param>
+        /// <param name="userTaskID">user task id</param>
         /// <returns>Manage page</returns>
         public async Task<IActionResult> Complete(int userTaskID)
         {
@@ -124,9 +124,9 @@ namespace Maintain.NET.Controllers
         /// <summary>
         /// Compiles email notification
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="userTaskID"></param>
-        /// <returns></returns>
+        /// <param name="user">Current User</param>
+        /// <param name="userTaskID">user task id</param>
+        /// <returns>Sends user an email</returns>
         public async Task AlertEmail(ApplicationUser user, int userTaskID)
         {
             TimeConverter timeConverter = new TimeConverter();

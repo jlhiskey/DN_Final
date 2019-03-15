@@ -2,11 +2,14 @@
 @using Maintain.NET.Data
 @{
     Layout = "_Layout";
+    ViewData["Title"] = "Complete Task";
 }
+
+<h1>Complete Task</h1>
 
 <a asp-action="Complete" asp-route-id="@Model.ID" id="a-button">Complete Task</a>
 
-<h3>Completion History</h3>
+<h1>Completion History</h1>
 
 @foreach (var item in Model.UserMaintenanceHistory)
 {

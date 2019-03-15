@@ -49,7 +49,7 @@ namespace Maintain.NET
             services.AddScoped<IUserTaskManager, UserTaskManagementService>();
 
             // Switches between connection strings.
-            bool usingProduction = false;
+            bool usingProduction = true;
 
             //*********************DEFAULT CONNECTION STRINGS******************************************************************
             if (!usingProduction)
