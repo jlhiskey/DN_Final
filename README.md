@@ -4,8 +4,8 @@
 https://maintainnet.azurewebsites.net/
 
 ## Overview
-Maintain.Net utilizes machine learning to help people stay on schedule with routine maintenance tasks.  Users will receive reminder emails to the user about the task.
-The app determines at what intervals the task will need to be completed through user input in addition to the input from other users doing the same task. Through machine learning, this interval is determined. 
+Maintain.Net utilizes machine learning to help people stay on schedule with routine maintenance tasks.  Users will receive email reminders prompting the completion of a specific task according to its due date. 
+The app determines the intervals at which the task will need to be completed based individual data input as well as input from other users doing the same task. 
 
 ## Languages Used
 - C#
@@ -40,7 +40,7 @@ The app determines at what intervals the task will need to be completed through 
 - Update database for IdentityMaintainDbContext
 - Run the application
 
-#### Features
+### Features
 - Site Introduction Statement
 
 - Registration form 
@@ -56,72 +56,7 @@ The app determines at what intervals the task will need to be completed through 
   - Email
   - Password
   - Login button
-
-#### Acceptance Criteria
-
-* Ensure that user always is directed to the landing page upon opening of the application.
-
-* Ensure there are registration and login options 
-
-### User Story 2 - User Dashboard
-
-#### Features 
-
-- Task links that redirect to task completion page
-
-- Drop down menu containing task options
-  - Change Oil
-  - Water plants
-  - Clean fish tank
-
-#### Acceptance Criteria
-
-* User will be directed to user dashboard after login.
-
-* User have the ability to navigate to task history.
-
-### User Story 3 - Task Management
-
-#### Features
-
-- Delete button for each task 
-  - Add prompt to confirm deletion
-
-- Add new task button
-
-#### Acceptance Criteria
-
-* The delete button will delete the instance of the a task.
-
-* Add task will create a new instance of a task based on drop down menu.
-
-### User Story 4 - Task Completion Page
-
-#### Features 
-
-- Complete task button submits data to task database
-
-- Display a table of task completion history
-
-#### Acceptance
-
-* Ensure that user will be able to view their last 5 completed task submissions.
-
-* Ensure that "Complete" button allow users to submit data and update history.
-
-### User Story 5 - Task Reminders/Recommendations
-
-#### Features
-
-- Use Microsoft Sendgrid to send reminder emails based on set intervals  
-
-- Utilize machine learning data to recommend task completion time on dashboard. 
-
-#### Acceptance Criteria
-
-* Receive an email from our service notifying user that their scheduled task is due.
-
-* Provide the user with a suggested interval to complete the selected task.  
+ 
 
 ## Database Schema
 - There will be two databases for this project.  
