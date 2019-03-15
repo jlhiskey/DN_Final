@@ -84,9 +84,22 @@ header {
   
     height: 3vw;
 }
-#login-title {
-    margin-top: 0.5vw;
+#welcome-title {
+    margin-top: .5vw;
 }
+
+#login-title {
+    margin-top: .5vw;
+}
+
+#register-title {
+    margin-top: .5vw;
+}
+
+#manage-title {
+    margin-top: -3vw;
+}
+
 button {
     font-family: 'Baloo Thambi', cursive;
     font-family: 'NTR', sans-serif;
@@ -186,6 +199,11 @@ button:hover {
     right: 2vw;
 
 }
+#greeting {
+   
+    margin-left: -87vw;
+    margin-top: 1vw;
+}
 .text-container {
     margin-left: auto;
     margin-right: auto;
@@ -210,6 +228,7 @@ button:hover {
     background: rgb(255, 255, 255, 0.7);
     margin-top: 2Svw;
     padding-bottom: 1.5vw;
+    margin-top: 7vw;
 }
 
 img {
@@ -287,60 +306,6 @@ img {
 
 
 
-.sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    /*z-index: 1;*/
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-    font-family: 'Baloo Thambi', cursive;
-    font-family: 'NTR', sans-serif;
-    font-family: 'Secular One', sans-serif;
-    font-family: 'K2D', sans-serif;
-    font-family: 'Inder', sans-serif;
-    font-family: 'Tauri', sans-serif;
-    font-family: 'Contrail One', cursive;
-    font-family: 'Baloo', cursive;
-    font-family: 'Alfa Slab One', cursive;
-    font-family: 'Righteous', cursive;
-    font-family: 'Lilita One', cursive;
-    font-family: 'Fredoka One', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Changa One', cursive;
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-}
-
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }
-
-.main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-        .sidenav a {
-            font-size: 18px;
-        }
-}
 
 footer {
     margin-left: auto;

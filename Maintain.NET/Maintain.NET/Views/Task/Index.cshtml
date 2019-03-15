@@ -3,20 +3,23 @@
 @using Maintain.NET.Models
 @inject ITaskManager TaskManagementService
 @inject SignInManager<ApplicationUser> signInManager
+
+<header id="main-header">
 @if (signInManager.IsSignedIn(User))
 {
-    <div>
+    <div id="greeting">
         <div>
             <p>
-                <i>
-                    Hey, @User.Claims.First(c => c.Type == "FullName").Value  </i>
-                    <a href="../Account/Logout" id="logout">Log out </a> 
-</p>
+                <i>Hey, @User.Claims.First(c => c.Type == "FullName").Value </i>
+                    <a href="../Account/Logout" id="logout">Log out </a> </p>
 
         </div>
     </div>
 }
-<h3>Manage Your Tasks</h3>
+
+    <h3 id="manage-title">Manage Your Tasks</h3>
+</header>
+
 @{
     var tasks = await TaskManagementService.GetAllTasks();
 
