@@ -21,7 +21,13 @@ namespace Maintain.NET.Models
         /// Recommended maintenance interval of MaintenanceTask
         /// </summary>
         [Display(Name = "Recommended Interval")]
-        public int RecommendedInterval { get; set; }
+        public long RecommendedInterval { get; set; }
+
+        [Display(Name = "Minimum Interval")]
+        public long MinimumInterval { get; set; }
+
+        [Display(Name = "Maxiumum Interval")]
+        public long MaximumInterval { get; set; }
 
         // Navigation Properties
         /// <summary>

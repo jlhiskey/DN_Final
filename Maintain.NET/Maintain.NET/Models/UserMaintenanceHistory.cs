@@ -20,9 +20,17 @@ namespace Maintain.NET.Models
         public int UserMaintenanceTaskID { get; set; }
 
         /// <summary>
+        /// User Maintenance Task ID
+        /// </summary>
+        public int MaintenanceRef { get; set; }
+
+        /// <summary>
         /// Records when the task was completed
         /// </summary>
         public DateTime TimeComplete { get; set; }
+
+        //Interval to be sent to machine learning
+        public long Interval { get; set; }
 
         // Navigation Properties
 

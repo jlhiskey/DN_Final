@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Maintain.NET.Data;
 using Maintain.NET.Models;
+using Maintain.NET.Models.Interfaces;
+using Maintain.NET.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,13 +38,15 @@ namespace Maintain.NET
                 .AddEntityFrameworkStores<IdentityMaintainDbContext>()
                 .AddDefaultTokenProviders();
 
-            //Add Identity Here
-
+            //Add Email Here
+            services.AddScoped<IEmailSender, EmailSender>();
 
             //Add Authorization Here
 
 
             //Add Dependency Injection Here
+            services.AddScoped<ITaskManager, TaskManagementService>();
+            services.AddScoped<IUserTaskManager, UserTaskManagementService>();
 
             // Switches between connection strings.
             bool usingProduction = true;
@@ -63,6 +68,9 @@ namespace Maintain.NET
                 services.AddDbContext<IdentityMaintainDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:IdentityProductionConnection"]));
 
             }
+            // for making dropdown ??? hope so...
+            //var connection = Configuration.GetConnectionString("DatabaseConnection");
+            //services.AddDbContext<MaintenanceTask>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

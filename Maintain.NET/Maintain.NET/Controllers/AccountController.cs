@@ -1,11 +1,14 @@
 ﻿using Maintain.NET.Models;
 using Maintain.NET.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Maintain.NET.Controllers
@@ -16,11 +19,15 @@ namespace Maintain.NET.Controllers
 
         private SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        private IEmailSender _emailSender;
+
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender)
         {
             _userManager = userManager;
 
             _signInManager = signInManager;
+
+            _emailSender = emailSender;
         }
         /// <summary>
         /// Resgistration Page
@@ -65,7 +72,9 @@ namespace Maintain.NET.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("Index", "Home");
+                    await RegistrationEmail(user);
+
+                    return RedirectToAction("Index", "Task");
                 }
                 
 
@@ -75,6 +84,22 @@ namespace Maintain.NET.Controllers
             return View(rvm);
         }
 
+        /// <summary>
+        /// Sends registration confirmation email to user
+        /// </summary>
+        /// <param name="user">User registering</param>
+        public async Task RegistrationEmail(ApplicationUser user)
+        {
+            ApplicationUser thisUser = await _userManager.FindByEmailAsync(user.Email);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Hey {thisUser.FirstName}, thanks for registering with Maintain.NET!");
+            sb.AppendLine("We hope you have a good day!");
+
+          
+            await _emailSender.SendEmailAsync(thisUser.Email, "Registration Confirmation", sb.ToString());
+        }
         /// <summary>
         /// directs user to login page
         /// </summary>
@@ -96,13 +121,24 @@ namespace Maintain.NET.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Task");
                 }
             }
 
             ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
 
             return View(lvm);
+        }
+
+        /// <summary>
+        /// Logs user out
+        /// </summary>
+        /// <returns>view</returns>
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
