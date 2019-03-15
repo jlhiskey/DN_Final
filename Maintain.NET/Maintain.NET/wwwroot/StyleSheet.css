@@ -217,6 +217,7 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
+    border-radius: .3vw;
     padding-left: 1em;
     padding-right: 1em;
     background-color: white;
@@ -229,6 +230,7 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
+    border-radius: .3vw;
     padding-left: 1em;
     padding-right: 1em;
     background-color: white;
@@ -243,6 +245,7 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
+    border-radius: .3vw;
     padding-left: 1em;
     padding-right: 1em;
     background-color: white;
@@ -311,6 +314,7 @@ img {
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
+    border-radius: .3vw;
     padding-left: 1em;
     padding-right: 1em;
     background-color: white;
@@ -323,6 +327,7 @@ img {
 #register {
     margin-top: 10vw;
     border: 1px solid black;
+    border-radius: .3vw;
     width: 23vw;
     margin-left: 38vw;
     background: rgb(255, 255, 255, 0.7);
@@ -331,6 +336,7 @@ img {
 #login {
     margin-top: 10vw;
     border: 1px solid black;
+    border-radius: .3vw;
     width: 23vw;
     margin-left: 38vw;
     background: rgb(255, 255, 255, 0.7);
