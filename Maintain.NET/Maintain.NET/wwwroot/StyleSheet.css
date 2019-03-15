@@ -325,11 +325,10 @@ img {
 }
 
 #register {
-    margin-top: 10vw;
     border: 1px solid black;
     border-radius: .3vw;
-    width: 23vw;
-    margin-left: 38vw;
+    width: 25vw;
+    margin-left: 37vw;
     background: rgb(255, 255, 255, 0.7);
     margin-top: 18vw;
 }
