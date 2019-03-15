@@ -2,12 +2,15 @@
 
 ## Deployed Site
 https://maintainnet.azurewebsites.net/
-## Overview
-This app was designed for keeping up with routine maintenance task. This app will aid in keeping up with regular maintenance or task associated by sending reminder emails to the user about the task.
-The app determines at what intervals the task will need to be completed through user input in addition to the input from other users doing the same task. Through machine learning, this interval is determined. 
-The more submissions of completed, the more accurate the information becomes. 
 
-The languages utilized in building this web app consit of HTML, CSS, and C#. 
+## Overview
+Maintain.Net utilizes machine learning to help people stay on schedule with routine maintenance tasks.  Users will receive reminder emails to the user about the task.
+The app determines at what intervals the task will need to be completed through user input in addition to the input from other users doing the same task. Through machine learning, this interval is determined. 
+
+## Languages Used
+- C#
+- HTML
+- CSS
 
 ## Tools Used
 - ML net
