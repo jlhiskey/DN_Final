@@ -1,17 +1,46 @@
 # Maintain.NET
 
-## Overview
-
-### Deployed Site
+## Deployed Site
 https://maintainnet.azurewebsites.net/
 
-## Example Usage
+## Overview
+Maintain.Net utilizes machine learning to help people stay on schedule with routine maintenance tasks.  Users will receive email reminders prompting the completion of a specific task according to its due date. 
+The app determines the intervals at which the task will need to be completed based individual data input as well as input from other users doing the same task. 
 
-## User Stories
+## Languages Used
+- C#
+- HTML
+- CSS
 
-### User Story 1 - Landing Page
+## Tools Used
+- ML net
+- Sendgrid
+- ASP.NET Core MVC
+- SQL Database
+- Entity Framework Core
+- Microsoft Identity
+- Azure DevOps
+- Visual Studio
 
-#### Features
+## Data Flow
+- When a user lands on our site, they are introduced to the maintenance task tracking service and given the option to either register or login.  
+- On the registration page, the user must input their first name, last name, email, and password.  
+- This information will be saved into a user identity database.  
+- If an account has already been created, the user can log in using their email and password.  
+- Upon login, the user will land on a dashboard which shows their personal tasks and allows them to select a new task to add to the list.  
+- Users have the option to click an individual task that redirects to a completion page which outlines a history of completed tasks.  
+- This completion page also allows a user to mark a task as complete which sends data to the external database that collects aggregate data from all users.  
+
+## Getting Started
+
+- Clone the repository in to your local  machine.
+- Add migration for MaintainDbContext
+- Add migration to IdentityMaintainDbContext
+- Update database for MaintainDbContext
+- Update database for IdentityMaintainDbContext
+- Run the application
+
+### Features
 - Site Introduction Statement
 
 - Registration form 
@@ -27,72 +56,7 @@ https://maintainnet.azurewebsites.net/
   - Email
   - Password
   - Login button
-
-#### Acceptance Criteria
-
-* Ensure that user always is directed to the landing page upon opening of the application.
-
-* Ensure there are registration and login options 
-
-### User Story 2 - User Dashboard
-
-#### Features 
-
-- Task links that redirect to task completion page
-
-- Drop down menu containing task options
-  - Change Oil
-  - Water plants
-  - Clean fish tank
-
-#### Acceptance Criteria
-
-* User will be directed to user dashboard after login.
-
-* User have the ability to navigate to task history.
-
-### User Story 3 - Task Management
-
-#### Features
-
-- Delete button for each task 
-  - Add prompt to confirm deletion
-
-- Add new task button
-
-#### Acceptance Criteria
-
-* The delete button will delete the instance of the a task.
-
-* Add task will create a new instance of a task based on drop down menu.
-
-### User Story 4 - Task Completion Page
-
-#### Features 
-
-- Complete task button submits data to task database
-
-- Display a table of task completion history
-
-#### Acceptance
-
-* Ensure that user will be able to view their last 5 completed task submissions.
-
-* Ensure that "Complete" button allow users to submit data and update history.
-
-### User Story 5 - Task Reminders/Recommendations
-
-#### Features
-
-- Use Microsoft Sendgrid to send reminder emails based on set intervals  
-
-- Utilize machine learning data to recommend task completion time on dashboard. 
-
-#### Acceptance Criteria
-
-* Receive an email from our service notifying user that their scheduled task is due.
-
-* Provide the user with a suggested interval to complete the selected task.  
+ 
 
 ## Database Schema
 - There will be two databases for this project.  
