@@ -2,9 +2,12 @@
 @using Maintain.NET.Data
 @{
     Layout = "_Layout";
+    ViewData["Title"] = "Complete Task";
 }
+
 @inject SignInManager<ApplicationUser> signInManager
-@inject SignInManager<ApplicationUser> signInManager
+
+
 <header id="main-header">
     @if (signInManager.IsSignedIn(User))
     {
@@ -12,14 +15,15 @@
             <div>
                 <p>
                     <i>Hey, @User.Claims.First(c => c.Type == "FullName").Value </i>
-                    <a href="../Account/Logout" id="logout">Log out </a>
+                   
+                    <a id="logout" asp-controller="Account" asp-action="Logout">Log Out</a>
                 </p>
 
             </div>
         </div>
     }
 
-    <h3 id="manage-title">Task History</h3>
+    <h3 id="manage-title">Complete Task</h3>
 </header>
 <div id="complete-btn">
 
@@ -27,11 +31,13 @@
 <a asp-action="Complete" asp-route-id="@Model.ID" id="add-button">Complete Task</a>
 </div>
 
+<h3>Task History</h3>
+
 <div class="text-container-history">
 
 @foreach (var item in Model.UserMaintenanceHistory)
 {
-    <p>Last Complete @item.TimeComplete</p>
+    <p>Task Completed on @item.TimeComplete</p>
 }
 </div>
 
