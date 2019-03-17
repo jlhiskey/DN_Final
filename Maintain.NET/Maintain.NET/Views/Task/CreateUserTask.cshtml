@@ -1,7 +1,7 @@
 ﻿@model List<Maintain.NET.Models.MaintenanceTask>
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create New Task";
     Layout = "_Layout";
 }
 @inject SignInManager<ApplicationUser> signInManager
@@ -12,7 +12,7 @@
             <div>
                 <p>
                     <i>Hey, @User.Claims.First(c => c.Type == "FullName").Value </i>
-                    <a href="../Account/Logout" id="logout">Log out </a>
+                    <a id="logout" asp-controller="Account" asp-action="Logout">Log Out</a>
                 </p>
 
             </div>
